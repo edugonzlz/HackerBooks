@@ -12,20 +12,20 @@ import UIKit
 class Book {
 
     // MARK: - Stored Properties
-    var tittle      :   String
+    var title      :   String
     var author      :   String
     var tags        :   [String]
-    var image       :   UIImage
-    var pdf         :   NSData
+    var image       :   NSURL
+    var pdf         :   NSURL
 
     // MARK: - Inits
-    init(tittle: String,
+    init(title: String,
         author: String,
         tags: [String],
-        image: UIImage,
-        pdf: NSData) {
+        image: NSURL,
+        pdf: NSURL) {
 
-        self.tittle = tittle
+        self.title = title
         self.author = author
         self.tags = tags
         self.image = image

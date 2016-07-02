@@ -36,7 +36,7 @@ class Library {
     }
 
     // MARK: - Inits
-    init(books: BooksArray) {
+    init(withBooks books: BooksArray) {
 
         self.books = books
 
