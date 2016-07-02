@@ -67,7 +67,7 @@ func decode(bookInJSON json: JSONDictionary) throws -> Book {
     return Book(title: title,
                 author: author,
                 tags: tags,
-                image: imageURL,
+                imageURL: imageURL,
                 pdf: pdfURL)
 }
 

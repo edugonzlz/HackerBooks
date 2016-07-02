@@ -12,23 +12,34 @@ import UIKit
 class Book {
 
     // MARK: - Stored Properties
-    var title      :   String
-    var author      :   String
-    var tags        :   [String]
-    var image       :   NSURL
-    var pdf         :   NSURL
+    let title : String
+    let author : String
+    let tags : [String]
+    let imageURL : NSURL
+    let pdf : NSURL
 
+    // MARK: - Computed Properties
+    // TODO: - esto esta lleno de !
+//    var image : UIImage {
+//        get {
+//            guard let data = NSData(contentsOfURL: self.imageURL) else {
+//                return UIImage(named: "Firewatch.jpg")!
+//            }
+//
+//            return UIImage(data: data)!
+//        }
+//    }
     // MARK: - Inits
     init(title: String,
         author: String,
         tags: [String],
-        image: NSURL,
+        imageURL: NSURL,
         pdf: NSURL) {
 
         self.title = title
         self.author = author
         self.tags = tags
-        self.image = image
+        self.imageURL = imageURL
         self.pdf = pdf
     }
 }
