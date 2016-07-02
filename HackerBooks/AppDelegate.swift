@@ -15,7 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+
+        let json = try? loadAndSerialize(fromLocalJSONFile: "books_readable.json")
+
+        let books = booksArray(fromJSONArray: json!)
+
+        let model = Library(withBooks: books)
+
         return true
     }
 
