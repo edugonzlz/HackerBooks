@@ -16,11 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-        let json = try? loadAndSerialize(fromLocalJSONFile: "books_readable.json")
+        do {
 
-        let books = booksArray(fromJSONArray: json!)
+            let json = try loadAndSerialize(fromLocalJSONFile: "books_readable.json")
+            let books = booksArray(fromJSONArray: json)
 
-        let model = Library(withBooks: books)
+            let model = Library(withBooks: books)
+            
+        } catch {
+            // TODO: - revisar este error, esta duplicado en loadAndSerialize???
+            print("Error tratando de cargar y serializar el archivo JsON")
+        }
 
         return true
     }
