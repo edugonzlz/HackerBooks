@@ -22,6 +22,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let books = booksArray(fromJSONArray: json)
 
             let model = Library(withBooks: books)
+
+
+            // Crear window
+
+            // Crear LibraryViewController
+            let lVC = LibraryTableViewController(withModel: model)
+
+            // Metemos el View en un nav
+            let nav = UINavigationController(rootViewController: lVC)
+
+            // Asignar como root
+            window?.rootViewController = nav
+
+            // Hacer visible la window
+            window?.makeKeyAndVisible()
             
         } catch {
             // TODO: - revisar este error, esta duplicado en loadAndSerialize???

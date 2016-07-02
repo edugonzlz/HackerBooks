@@ -18,6 +18,11 @@
 		342C80F91D28116800090B76 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C80F81D28116800090B76 /* Foundation.swift */; };
 		342C80FB1D28122C00090B76 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C80FA1D28122C00090B76 /* Errors.swift */; };
 		342C80FE1D28210D00090B76 /* books_readable.json in Resources */ = {isa = PBXBuildFile; fileRef = 342C80FD1D28210D00090B76 /* books_readable.json */; };
+		342C81031D282D9000090B76 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C81011D282D9000090B76 /* BookViewController.swift */; };
+		342C81041D282D9000090B76 /* BookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 342C81021D282D9000090B76 /* BookViewController.xib */; };
+		342C81061D282DC500090B76 /* LibraryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C81051D282DC500090B76 /* LibraryTableViewController.swift */; };
+		342C81091D282DF100090B76 /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C81071D282DF100090B76 /* PDFViewController.swift */; };
+		342C810A1D282DF100090B76 /* PDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 342C81081D282DF100090B76 /* PDFViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +60,11 @@
 		342C80F81D28116800090B76 /* Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foundation.swift; sourceTree = "<group>"; };
 		342C80FA1D28122C00090B76 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		342C80FD1D28210D00090B76 /* books_readable.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = books_readable.json; sourceTree = "<group>"; };
+		342C81011D282D9000090B76 /* BookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
+		342C81021D282D9000090B76 /* BookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookViewController.xib; sourceTree = "<group>"; };
+		342C81051D282DC500090B76 /* LibraryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryTableViewController.swift; sourceTree = "<group>"; };
+		342C81071D282DF100090B76 /* PDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
+		342C81081D282DF100090B76 /* PDFViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PDFViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +152,8 @@
 		342C80EC1D27B1D300090B76 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				342C81021D282D9000090B76 /* BookViewController.xib */,
+				342C81081D282DF100090B76 /* PDFViewController.xib */,
 				342C80C41D27B12E00090B76 /* Assets.xcassets */,
 				342C80C61D27B12E00090B76 /* LaunchScreen.storyboard */,
 			);
@@ -151,6 +163,9 @@
 		342C80ED1D27B1DD00090B76 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				342C81011D282D9000090B76 /* BookViewController.swift */,
+				342C81051D282DC500090B76 /* LibraryTableViewController.swift */,
+				342C81071D282DF100090B76 /* PDFViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -297,7 +312,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				342C810A1D282DF100090B76 /* PDFViewController.xib in Resources */,
 				342C80C81D27B12E00090B76 /* LaunchScreen.storyboard in Resources */,
+				342C81041D282D9000090B76 /* BookViewController.xib in Resources */,
 				342C80C51D27B12E00090B76 /* Assets.xcassets in Resources */,
 				342C80FE1D28210D00090B76 /* books_readable.json in Resources */,
 			);
@@ -324,11 +341,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				342C81091D282DF100090B76 /* PDFViewController.swift in Sources */,
 				342C80F31D27B3ED00090B76 /* BookModel.swift in Sources */,
 				342C80F71D280F6F00090B76 /* JSONProcess.swift in Sources */,
 				342C80BE1D27B12E00090B76 /* AppDelegate.swift in Sources */,
+				342C81031D282D9000090B76 /* BookViewController.swift in Sources */,
 				342C80F91D28116800090B76 /* Foundation.swift in Sources */,
 				342C80FB1D28122C00090B76 /* Errors.swift in Sources */,
+				342C81061D282DC500090B76 /* LibraryTableViewController.swift in Sources */,
 				342C80F51D27B82D00090B76 /* LibraryModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
