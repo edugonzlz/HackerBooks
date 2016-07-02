@@ -13,6 +13,7 @@
 		342C80D31D27B12F00090B76 /* HackerBooksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C80D21D27B12F00090B76 /* HackerBooksTests.swift */; };
 		342C80DE1D27B12F00090B76 /* HackerBooksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C80DD1D27B12F00090B76 /* HackerBooksUITests.swift */; };
 		342C80F31D27B3ED00090B76 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C80F21D27B3ED00090B76 /* BookModel.swift */; };
+		342C80F51D27B82D00090B76 /* LibraryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C80F41D27B82D00090B76 /* LibraryModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		342C80DD1D27B12F00090B76 /* HackerBooksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackerBooksUITests.swift; sourceTree = "<group>"; };
 		342C80DF1D27B12F00090B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		342C80F21D27B3ED00090B76 /* BookModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
+		342C80F41D27B82D00090B76 /* LibraryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				342C80F21D27B3ED00090B76 /* BookModel.swift */,
+				342C80F41D27B82D00090B76 /* LibraryModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			files = (
 				342C80F31D27B3ED00090B76 /* BookModel.swift in Sources */,
 				342C80BE1D27B12E00090B76 /* AppDelegate.swift in Sources */,
+				342C80F51D27B82D00090B76 /* LibraryModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
