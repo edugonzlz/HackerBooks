@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		342C80BE1D27B12E00090B76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C80BD1D27B12E00090B76 /* AppDelegate.swift */; };
-		342C80C01D27B12E00090B76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C80BF1D27B12E00090B76 /* ViewController.swift */; };
-		342C80C31D27B12E00090B76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 342C80C11D27B12E00090B76 /* Main.storyboard */; };
 		342C80C51D27B12E00090B76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 342C80C41D27B12E00090B76 /* Assets.xcassets */; };
 		342C80C81D27B12E00090B76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 342C80C61D27B12E00090B76 /* LaunchScreen.storyboard */; };
 		342C80D31D27B12F00090B76 /* HackerBooksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C80D21D27B12F00090B76 /* HackerBooksTests.swift */; };
@@ -36,8 +34,6 @@
 /* Begin PBXFileReference section */
 		342C80BA1D27B12E00090B76 /* HackerBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackerBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		342C80BD1D27B12E00090B76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		342C80BF1D27B12E00090B76 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		342C80C21D27B12E00090B76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		342C80C41D27B12E00090B76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		342C80C71D27B12E00090B76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		342C80C91D27B12E00090B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -97,12 +93,8 @@
 		342C80BC1D27B12E00090B76 /* HackerBooks */ = {
 			isa = PBXGroup;
 			children = (
-				342C80BD1D27B12E00090B76 /* AppDelegate.swift */,
-				342C80BF1D27B12E00090B76 /* ViewController.swift */,
-				342C80C11D27B12E00090B76 /* Main.storyboard */,
-				342C80C41D27B12E00090B76 /* Assets.xcassets */,
-				342C80C61D27B12E00090B76 /* LaunchScreen.storyboard */,
-				342C80C91D27B12E00090B76 /* Info.plist */,
+				342C80F11D27B25C00090B76 /* App */,
+				342C80EE1D27B1E500090B76 /* Frameworks */,
 			);
 			path = HackerBooks;
 			sourceTree = "<group>";
@@ -123,6 +115,56 @@
 				342C80DF1D27B12F00090B76 /* Info.plist */,
 			);
 			path = HackerBooksUITests;
+			sourceTree = "<group>";
+		};
+		342C80EB1D27B1CD00090B76 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		342C80EC1D27B1D300090B76 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				342C80C41D27B12E00090B76 /* Assets.xcassets */,
+				342C80C61D27B12E00090B76 /* LaunchScreen.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		342C80ED1D27B1DD00090B76 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		342C80EE1D27B1E500090B76 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		342C80EF1D27B1EC00090B76 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				342C80C91D27B12E00090B76 /* Info.plist */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		342C80F11D27B25C00090B76 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				342C80BD1D27B12E00090B76 /* AppDelegate.swift */,
+				342C80EB1D27B1CD00090B76 /* Models */,
+				342C80EC1D27B1D300090B76 /* Views */,
+				342C80ED1D27B1DD00090B76 /* Controllers */,
+				342C80EF1D27B1EC00090B76 /* Utils */,
+			);
+			name = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,7 +273,6 @@
 			files = (
 				342C80C81D27B12E00090B76 /* LaunchScreen.storyboard in Resources */,
 				342C80C51D27B12E00090B76 /* Assets.xcassets in Resources */,
-				342C80C31D27B12E00090B76 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,7 +297,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				342C80C01D27B12E00090B76 /* ViewController.swift in Sources */,
 				342C80BE1D27B12E00090B76 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,14 +333,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		342C80C11D27B12E00090B76 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				342C80C21D27B12E00090B76 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		342C80C61D27B12E00090B76 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -484,6 +516,7 @@
 				342C80E41D27B12F00090B76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		342C80E51D27B12F00090B76 /* Build configuration list for PBXNativeTarget "HackerBooksTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +525,7 @@
 				342C80E71D27B12F00090B76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		342C80E81D27B12F00090B76 /* Build configuration list for PBXNativeTarget "HackerBooksUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +534,7 @@
 				342C80EA1D27B12F00090B76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
