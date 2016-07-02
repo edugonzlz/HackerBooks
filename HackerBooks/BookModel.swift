@@ -19,22 +19,25 @@ class Book {
     let pdf : NSURL
 
     // MARK: - Computed Properties
-    // TODO: - esto esta lleno de !
-//    var image : UIImage {
-//        get {
-//            guard let data = NSData(contentsOfURL: self.imageURL) else {
-//                return UIImage(named: "Firewatch.jpg")!
-//            }
-//
-//            return UIImage(data: data)!
-//        }
-//    }
+    // TODO: - cuidado, corregir, esto esta lleno de !
+    // TODO: - Me gustaria entregar la imagen aqui, pero me falla el for de los tags si lo hago
+    //    var image : UIImage {
+    //        get {
+    //            guard let data = NSData(contentsOfURL: self.imageURL) else {
+    //                return UIImage(named: "Firewatch.jpg")!
+    //            }
+    //
+    //            return UIImage(data: data)!
+    //        }
+    //    }
+
+
     // MARK: - Inits
     init(title: String,
-        author: String,
-        tags: [String],
-        imageURL: NSURL,
-        pdf: NSURL) {
+         author: String,
+         tags: [String],
+         imageURL: NSURL,
+         pdf: NSURL) {
 
         self.title = title
         self.author = author

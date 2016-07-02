@@ -49,7 +49,6 @@ class LibraryTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-
         return model.booksCount(forTag: section)
     }
 
@@ -60,8 +59,6 @@ class LibraryTableViewController: UITableViewController {
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
-        //        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
 
         // Averiguamos el libro
         let book = model.book(forIndex: indexPath.row, forTag: indexPath.section)
@@ -74,13 +71,14 @@ class LibraryTableViewController: UITableViewController {
             cell = UITableViewCell(style: .Subtitle, reuseIdentifier: cellId)
         }
 
+        // Descargamos la imagen
+        // TODO: - cuidado con el ! Refactorizar esto a una funcion?
         let data = NSData(contentsOfURL: book.imageURL)
-        var image =  UIImage(data: data!)
+        let image = UIImage(data: data!)
 
-        // Sincronizar
+        // Sincronizamos con la vista
         cell?.textLabel?.text = book.title
         cell?.detailTextLabel?.text = book.author
-        //        cell?.imageView?.image = book.image
         cell?.imageView?.image = image
 
         return cell!
