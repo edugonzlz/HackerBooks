@@ -49,6 +49,8 @@ class Library {
                 }
             }
         }
+        // Ordenamos las tags por orden alfabetico
+        self.tags.sortInPlace()
 
         // Guardamos cada libro en el array de tags que corresponda
         for tag in tags {
@@ -61,7 +63,9 @@ class Library {
                     booksWithTag.append(book)
                 }
             }
-
+            // Ordenamos comparando propiedad title cada array 
+            // y guardamos en el diccionario
+            booksWithTag.sortInPlace({ $0.title < $1.title })
             self.tagsDict[tag] = booksWithTag
         }
 
@@ -88,7 +92,6 @@ class Library {
         // TODO: - corregir este !
         return elements!
     }
-
     // Elemento para el index de un tag
     func book(forIndex index: Int, forTag tagIndex: Int) -> Book {
 
@@ -100,7 +103,6 @@ class Library {
 
         return element
     }
-
     // Nombre de una tag para un index
     func tagName(forIndex index: Int) -> String {
 
