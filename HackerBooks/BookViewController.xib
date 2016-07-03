@@ -7,6 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookViewController" customModule="HackerBooks" customModuleProvider="target">
             <connections>
+                <outlet property="authorLabel" destination="VH4-qL-TJd" id="5W4-3p-hbd"/>
+                <outlet property="titleLabel" destination="E41-59-JZk" id="SUj-RK-iOW"/>
+                <outlet property="titlePageImage" destination="H3F-ha-QaO" id="Wsj-ao-hmu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,7 +17,55 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H3F-ha-QaO">
+                    <rect key="frame" x="8" y="169" width="584" height="387"/>
+                </imageView>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OAi-96-003">
+                    <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="iz4-pF-b3N"/>
+                    </constraints>
+                    <items>
+                        <barButtonItem systemItem="bookmarks" id="VGI-v3-tog">
+                            <connections>
+                                <action selector="doFavorite:" destination="-1" id="7s9-4E-yuA"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="3hT-5j-hrO"/>
+                        <barButtonItem title="Leer PDF" id="ppg-pc-Xmq">
+                            <connections>
+                                <action selector="readPDF:" destination="-1" id="2RL-dO-dDC"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Author" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VH4-qL-TJd">
+                    <rect key="frame" x="8" y="113" width="584" height="48"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E41-59-JZk">
+                    <rect key="frame" x="8" y="57" width="584" height="48"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="H3F-ha-QaO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="31P-RI-9bi"/>
+                <constraint firstItem="E41-59-JZk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3gX-Qk-XR7"/>
+                <constraint firstItem="H3F-ha-QaO" firstAttribute="top" secondItem="VH4-qL-TJd" secondAttribute="bottom" constant="8" id="8cT-Bb-TQu"/>
+                <constraint firstAttribute="bottom" secondItem="OAi-96-003" secondAttribute="bottom" id="VTT-aQ-9cf"/>
+                <constraint firstItem="VH4-qL-TJd" firstAttribute="top" secondItem="E41-59-JZk" secondAttribute="bottom" constant="8" id="ViM-Qf-a3y"/>
+                <constraint firstItem="OAi-96-003" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gju-a6-2fD"/>
+                <constraint firstAttribute="trailing" secondItem="OAi-96-003" secondAttribute="trailing" id="nUW-dy-1Z8"/>
+                <constraint firstItem="OAi-96-003" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nfr-43-gqB"/>
+                <constraint firstItem="OAi-96-003" firstAttribute="top" secondItem="H3F-ha-QaO" secondAttribute="bottom" id="uE4-7n-3D8"/>
+                <constraint firstItem="VH4-qL-TJd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yFY-vc-c2E"/>
+            </constraints>
         </view>
     </objects>
 </document>

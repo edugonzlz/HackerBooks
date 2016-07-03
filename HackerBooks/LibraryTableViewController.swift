@@ -73,13 +73,13 @@ class LibraryTableViewController: UITableViewController {
 
         // Descargamos la imagen
         // TODO: - cuidado con el ! Refactorizar esto a una funcion?
-        let data = NSData(contentsOfURL: book.imageURL)
-        let image = UIImage(data: data!)
+//        let data = NSData(contentsOfURL: book.imageURL)
+//        let image = UIImage(data: data!)
 
         // Sincronizamos con la vista
         cell?.textLabel?.text = book.title
         cell?.detailTextLabel?.text = book.author
-        cell?.imageView?.image = image
+//        cell?.imageView?.image = image
 
         return cell!
     }

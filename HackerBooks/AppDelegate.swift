@@ -20,11 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         do {
-
+            // TODO: - Revisar ! en optionals
             var json = JSONArray()
 
-            let fm = NSFileManager.defaultManager()
             // Accedemos a la carpeta Documents de nuestra app
+            let fm = NSFileManager.defaultManager()
             let documentsURL = fm.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last
 
             // Guardamos la url de nuestro fichero
@@ -48,10 +48,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 //                                    contents: data,
                 //                                    attributes: nil)
 
-                print("descargando el json de internet desde: \(JSON_URL_KEY)")
-
                 // Lo serializamos
                 json = try loadAndSerialize(fromURL: fileURL)
+                print("descargando el json de internet desde: \(JSON_URL_KEY)")
             }
 
             let books = booksArray(fromJSONArray: json)
@@ -61,10 +60,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let lVC = LibraryTableViewController(withModel: model)
 
             // Metemos el View en un nav
-            let nav = UINavigationController(rootViewController: lVC)
+            let lNav = UINavigationController(rootViewController: lVC)
+
+            // Crear BookViewController
+            let bVC = BookViewController(withModel: books[0])
+
+            // Lo metemos en un nav
+            let bNav = UINavigationController(rootViewController: bVC)
+
+            // Creamos un splitViewController y metemos los dos Controllers anteriores
+            let splitVC = UISplitViewController()
+            splitVC.viewControllers = [lNav, bNav]
+
 
             // Asignar como root
-            window?.rootViewController = nav
+            window?.rootViewController = splitVC
 
             // Hacer visible la window
             window?.makeKeyAndVisible()
