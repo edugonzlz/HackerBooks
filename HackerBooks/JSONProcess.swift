@@ -36,6 +36,20 @@ func loadAndSerialize(fromLocalJSONFile name: String,
             throw HackerBooksError.jsonParsingError
         }
 }
+func loadAndSerialize(fromURL url: NSURL) throws -> JSONArray {
+
+        if let data = NSData(contentsOfURL: url),
+            maybeArray = try? NSJSONSerialization.JSONObjectWithData(data,
+                                                                     options: NSJSONReadingOptions.MutableContainers) as? JSONArray,
+            array = maybeArray {
+
+            return array
+
+        } else {
+
+            throw HackerBooksError.jsonParsingError
+        }
+}
 
 func decode(bookInJSON json: JSONDictionary) throws -> Book {
 

@@ -15,8 +15,8 @@ enum HackerBooksError : ErrorType {
     case wrongJSONFormat
     case wrongURLFormatForJSONResource
     case errorDecodingJSON
-    
-    //    case resourcePointedByUrlNotReachable
+    case resourcePointedByUrlNotReachable
+
     //    case jsonParsingError
     //    case nilJSONObject
 }
