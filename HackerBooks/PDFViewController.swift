@@ -34,11 +34,15 @@ class PDFViewController: UIViewController, UIWebViewDelegate {
         browser.delegate = self
 
         activityView.startAnimating()
-        browser.loadRequest(NSURLRequest(URL: model.pdfURL))
+        browser.loadRequest(NSURLRequest(URL: model.pdf))
     }
 
     // MARK: - LifeCycle
     override func viewWillAppear(animated: Bool) {
+        
+        activityView.startAnimating()
+    }
+    override func viewDidAppear(animated: Bool) {
 
         syncModelWithView()
     }

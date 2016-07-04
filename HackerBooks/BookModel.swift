@@ -22,20 +22,10 @@ class Book {
 
     // MARK: - Computed Properties
     // TODO: - cuidado, corregir, esto esta lleno de !
-//        var imager : UIImage {
-//            get {
-//                // miro a ver si la tengo en local
-//                guard let data = NSData(contentsOfURL: self.imageURL) else {
-//                    // Si no conseguimos una portada ponemos una por defecto
-//                    return UIImage(named: BOOK_ICON_KEY)!
-//                }
-//
-//                return UIImage(data: data)!
-//            }
-//        }
     var image : UIImage {
         get {
             let url = getLocalURL(forRemoteURL: imageURL)
+
             guard let data = NSData(contentsOfURL: url) else {
                 // Si no conseguimos una portada ponemos una por defecto
                 return UIImage(named: BOOK_ICON_KEY)!
@@ -43,6 +33,13 @@ class Book {
 
             return UIImage(data: data)!
 
+        }
+    }
+    var pdf : NSURL {
+        get {
+            let url = getLocalURL(forRemoteURL: pdfURL)
+
+            return url
         }
     }
 
