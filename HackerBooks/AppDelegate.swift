@@ -33,7 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let lNav = UINavigationController(rootViewController: lVC)
 
             // Crear BookViewController
-            let bVC = BookViewController(withModel: books[0])
+            let defaultModel = model.tagsDict[model.tags[0]]!.first
+            let bVC = BookViewController(withModel: defaultModel!)
 
             // Lo metemos en un nav
             let bNav = UINavigationController(rootViewController: bVC)

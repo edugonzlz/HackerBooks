@@ -46,7 +46,7 @@ class LibraryTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return model.booksCount(forTag: section)
+        return model.booksCount(forSection: section)
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -58,7 +58,7 @@ class LibraryTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         // Averiguamos el libro
-        let book = model.book(forIndex: indexPath.row, forTag: indexPath.section)
+        let book = model.book(forIndexPath: indexPath)
 
         // Creamos la celda
         let cellId = "bookCell"
@@ -67,12 +67,6 @@ class LibraryTableViewController: UITableViewController {
         if cell == nil {
             cell = UITableViewCell(style: .Subtitle, reuseIdentifier: cellId)
         }
-
-        // Descargamos la imagen
-        // TODO: - cuidado con el ! Refactorizar esto a una funcion?
-        // Por ahora funciona haciendolo en el modelo
-//        let data = NSData(contentsOfURL: book.imageURL)
-//        let image = UIImage(data: data!)
 
         // Sincronizamos con la vista
         cell?.textLabel?.text = book.title
@@ -86,7 +80,7 @@ class LibraryTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
         // Averiguamos que libro es
-        let book = model.book(forIndex: indexPath.row, forTag: indexPath.section)
+        let book = model.book(forIndexPath: indexPath)
 
         // Creamos un BookVC y hacemos un push
 

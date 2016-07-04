@@ -74,7 +74,7 @@ class Library {
     // MARK: - Methods
 
     // Cantidad de elementos por tag
-    func booksCount(forTag tagIndex: Int) -> Int {
+    func booksCount(forSection tagIndex: Int) -> Int {
 
         let tag = tags[tagIndex]
 
@@ -83,23 +83,14 @@ class Library {
         }
         return count
     }
-    // Array de un tag en concreto
-    func books(forTag tagIndex: Int) -> BooksArray {
-
-        let tag = tags[tagIndex]
-
-        let elements = tagsDict[tag]
-        // TODO: - corregir este !
-        return elements!
-    }
     // Elemento para el index de un tag
-    func book(forIndex index: Int, forTag tagIndex: Int) -> Book {
+    func book(forIndexPath indexPath: NSIndexPath) -> Book {
 
-        let tag = tags[tagIndex]
+        let tag = tags[indexPath.section]
 
         let elements = tagsDict[tag]
         // TODO: - corregir este !
-        let element = elements![index]
+        let element = elements![indexPath.row]
 
         return element
     }
