@@ -27,7 +27,7 @@
                         <constraint firstAttribute="height" constant="44" id="iz4-pF-b3N"/>
                     </constraints>
                     <items>
-                        <barButtonItem systemItem="bookmarks" id="VGI-v3-tog">
+                        <barButtonItem style="plain" systemItem="bookmarks" id="VGI-v3-tog">
                             <connections>
                                 <action selector="doFavorite:" destination="-1" id="7s9-4E-yuA"/>
                             </connections>

@@ -23,6 +23,12 @@
 		342C81091D282DF100090B76 /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C81071D282DF100090B76 /* PDFViewController.swift */; };
 		342C810A1D282DF100090B76 /* PDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 342C81081D282DF100090B76 /* PDFViewController.xib */; };
 		348491461D2A74DC0010612C /* bookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 348491451D2A74DC0010612C /* bookIcon.png */; };
+		3484914D1D2A7F680010612C /* iosStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 348491471D2A7F680010612C /* iosStar.png */; };
+		3484914E1D2A7F680010612C /* iosStar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 348491481D2A7F680010612C /* iosStar@2x.png */; };
+		3484914F1D2A7F680010612C /* iosStar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 348491491D2A7F680010612C /* iosStar@3x.png */; };
+		348491501D2A7F680010612C /* iosStarOutline.png in Resources */ = {isa = PBXBuildFile; fileRef = 3484914A1D2A7F680010612C /* iosStarOutline.png */; };
+		348491511D2A7F680010612C /* iosStarOutline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3484914B1D2A7F680010612C /* iosStarOutline@2x.png */; };
+		348491521D2A7F680010612C /* iosStarOutline@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3484914C1D2A7F680010612C /* iosStarOutline@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +71,12 @@
 		342C81071D282DF100090B76 /* PDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 		342C81081D282DF100090B76 /* PDFViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PDFViewController.xib; sourceTree = "<group>"; };
 		348491451D2A74DC0010612C /* bookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookIcon.png; sourceTree = "<group>"; };
+		348491471D2A7F680010612C /* iosStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iosStar.png; sourceTree = "<group>"; };
+		348491481D2A7F680010612C /* iosStar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iosStar@2x.png"; sourceTree = "<group>"; };
+		348491491D2A7F680010612C /* iosStar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iosStar@3x.png"; sourceTree = "<group>"; };
+		3484914A1D2A7F680010612C /* iosStarOutline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iosStarOutline.png; sourceTree = "<group>"; };
+		3484914B1D2A7F680010612C /* iosStarOutline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iosStarOutline@2x.png"; sourceTree = "<group>"; };
+		3484914C1D2A7F680010612C /* iosStarOutline@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iosStarOutline@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +215,12 @@
 		342C80FC1D2820F900090B76 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				348491471D2A7F680010612C /* iosStar.png */,
+				348491481D2A7F680010612C /* iosStar@2x.png */,
+				348491491D2A7F680010612C /* iosStar@3x.png */,
+				3484914A1D2A7F680010612C /* iosStarOutline.png */,
+				3484914B1D2A7F680010612C /* iosStarOutline@2x.png */,
+				3484914C1D2A7F680010612C /* iosStarOutline@3x.png */,
 				348491451D2A74DC0010612C /* bookIcon.png */,
 			);
 			name = Resources;
@@ -312,11 +330,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				348491501D2A7F680010612C /* iosStarOutline.png in Resources */,
 				342C810A1D282DF100090B76 /* PDFViewController.xib in Resources */,
+				348491521D2A7F680010612C /* iosStarOutline@3x.png in Resources */,
+				3484914F1D2A7F680010612C /* iosStar@3x.png in Resources */,
 				342C80C81D27B12E00090B76 /* LaunchScreen.storyboard in Resources */,
 				342C81041D282D9000090B76 /* BookViewController.xib in Resources */,
 				348491461D2A74DC0010612C /* bookIcon.png in Resources */,
+				3484914E1D2A7F680010612C /* iosStar@2x.png in Resources */,
 				342C80C51D27B12E00090B76 /* Assets.xcassets in Resources */,
+				3484914D1D2A7F680010612C /* iosStar.png in Resources */,
+				348491511D2A7F680010612C /* iosStarOutline@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

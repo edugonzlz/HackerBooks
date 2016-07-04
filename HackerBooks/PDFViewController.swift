@@ -8,28 +8,45 @@
 
 import UIKit
 
-class PDFViewController: UIViewController {
+class PDFViewController: UIViewController, UIWebViewDelegate {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    // MARK: - Properties
+    var model : Book
 
-        // Do any additional setup after loading the view.
-    }
+    @IBOutlet weak var browser: UIWebView!
+    @IBOutlet weak var activityView: UIActivityIndicatorView!
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: - Inits
+    init(withModel model: Book) {
+
+        self.model = model
+
+        super.init(nibName: nil, bundle: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    */
 
+    // MARK: - Methods
+    func syncModelWithView() {
+
+        browser.delegate = self
+
+        activityView.startAnimating()
+        browser.loadRequest(NSURLRequest(URL: model.pdfURL))
+    }
+
+    // MARK: - LifeCycle
+    override func viewWillAppear(animated: Bool) {
+
+        syncModelWithView()
+    }
+
+    // MARK: - WebViewDelegate
+    func webViewDidFinishLoad(webView: UIWebView) {
+
+        activityView.stopAnimating()
+        activityView.hidesWhenStopped = true
+    }
 }

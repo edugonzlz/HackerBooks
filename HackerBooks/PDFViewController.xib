@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PDFViewController" customModule="HackerBooks" customModuleProvider="target">
             <connections>
+                <outlet property="activityView" destination="9hD-iB-opl" id="g4h-U9-xmO"/>
+                <outlet property="browser" destination="ef5-Du-kOJ" id="gSj-CC-0mG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,7 +16,25 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ef5-Du-kOJ">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                </webView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="9hD-iB-opl">
+                    <rect key="frame" x="282" y="281" width="37" height="37"/>
+                    <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </activityIndicatorView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="9hD-iB-opl" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="GBC-jV-kOm"/>
+                <constraint firstItem="9hD-iB-opl" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="MTw-Lz-VO9"/>
+                <constraint firstAttribute="trailing" secondItem="ef5-Du-kOJ" secondAttribute="trailing" id="Ral-A2-Okz"/>
+                <constraint firstItem="ef5-Du-kOJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eau-z7-atU"/>
+                <constraint firstAttribute="bottom" secondItem="ef5-Du-kOJ" secondAttribute="bottom" id="lP2-0E-7V6"/>
+                <constraint firstItem="ef5-Du-kOJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="xki-bm-csQ"/>
+            </constraints>
         </view>
     </objects>
 </document>

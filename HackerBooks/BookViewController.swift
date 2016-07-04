@@ -39,15 +39,19 @@ class BookViewController: UIViewController {
     }
     @IBAction func readPDF(sender: UIBarButtonItem) {
 
-        // Hacer un push al PDFViewController
+        // Creamos un PDFViewController
+        let pdfVC = PDFViewController(withModel: model)
 
+        // Hacer un push al PDFViewController
+        navigationController?.pushViewController(pdfVC, animated: true)
 
     }
+    
     func syncModelWithView() {
 
+        title = model.title
         self.titleLabel?.text = model.title
         self.authorLabel?.text = model.author
-        // TODO: - pendiente recoger la imagen
         self.titlePageImage?.image = model.image
     }
 
@@ -62,21 +66,5 @@ class BookViewController: UIViewController {
 
         // Cambiar color del boton segun corresponda
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
