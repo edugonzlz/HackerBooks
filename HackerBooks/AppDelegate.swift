@@ -9,7 +9,6 @@
 import UIKit
 
 let JSON_URL_KEY = "https://t.co/K9ziV0z3SJ"
-let JSON_FILE_NAME_KEY = "books_readable.json"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,38 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         do {
-            // TODO: - Revisar ! en optionals
-            var json = JSONArray()
 
-            // Accedemos a la carpeta Documents de nuestra app
-            let fm = NSFileManager.defaultManager()
-            let documentsURL = fm.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last
-
-            // Guardamos la url de nuestro fichero
-            let fileURL = documentsURL!.URLByAppendingPathComponent(JSON_FILE_NAME_KEY)
-
-            // Comprobar si tenemos un JSON en local
-            if fm.fileExistsAtPath(fileURL.path!) {
-
-                json = try loadAndSerialize(fromURL: fileURL)
-                print("usando el json local en: \(fileURL)")
-
-            } else {
-
-                // Descargamos con la url
-                let url = NSURL(string: JSON_URL_KEY)
-                NSData(contentsOfURL: url!)?.writeToURL(fileURL, atomically: true)
-
-                // Otra forma de guardar los datos
-                //                let data = NSData(contentsOfURL: url!)
-                //                fm.createFileAtPath(fileURL.path!,
-                //                                    contents: data,
-                //                                    attributes: nil)
-
-                // Lo serializamos
-                json = try loadAndSerialize(fromURL: fileURL)
-                print("descargando el json de internet desde: \(JSON_URL_KEY)")
-            }
+            let url = getLocalURL(forRemoteURL: NSURL(string: JSON_URL_KEY)!)
+            let json = try loadAndSerialize(fromURL: url)
 
             let books = booksArray(fromJSONArray: json)
             let model = Library(withBooks: books)

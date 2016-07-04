@@ -22,16 +22,16 @@ func getLocalURL(forRemoteURL url: NSURL) -> NSURL {
     // Guardamos la url de nuestro fichero
     let fileURL = documentsURL!.URLByAppendingPathComponent(url.lastPathComponent!)
 
-    print("fileURL = \(fileURL)")
     if fm.fileExistsAtPath(fileURL.path!) {
 
+        print("Obteniendo datos de la url local: \(fileURL)")
         return fileURL
 
     } else {
 
         NSData(contentsOfURL: url)?.writeToURL(fileURL, atomically: true)
-        print("fileURL = \(fileURL)")
 
+        print("Descargando desde la url: \(url)")
         return fileURL
     }
 
