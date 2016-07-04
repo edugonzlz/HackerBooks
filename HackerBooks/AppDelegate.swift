@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         do {
 
-            let url = getLocalURL(forRemoteURL: NSURL(string: JSON_URL_KEY)!)
+            let url = getLocalURL(forRemoteURL: NSURL(string: JSON_URL_KEY)!, inCache: false)
             let json = try loadAndSerialize(fromURL: url)
 
             let books = booksArray(fromJSONArray: json)

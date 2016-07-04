@@ -24,7 +24,7 @@ class Book {
     // TODO: - cuidado, corregir, esto esta lleno de !
     var image : UIImage {
         get {
-            let url = getLocalURL(forRemoteURL: imageURL)
+            let url = getLocalURL(forRemoteURL: imageURL, inCache: false)
 
             guard let data = NSData(contentsOfURL: url) else {
                 // Si no conseguimos una portada ponemos una por defecto
@@ -37,7 +37,7 @@ class Book {
     }
     var pdf : NSURL {
         get {
-            let url = getLocalURL(forRemoteURL: pdfURL)
+            let url = getLocalURL(forRemoteURL: pdfURL, inCache: true)
 
             return url
         }

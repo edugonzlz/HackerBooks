@@ -8,30 +8,36 @@
 
 import Foundation
 
-// caso json - me pasan fileName - duvuelvo URL
+func getLocalURL(forRemoteURL url: NSURL, inCache: Bool) -> NSURL {
 
-// caso image - me pasan el book.title + sumo image + - devuelvo URl
-// caso pdf - me pasan el book.title + sumo pdf + - devuelvo URl
-
-func getLocalURL(forRemoteURL url: NSURL) -> NSURL {
+    // TODO: - Crear un throws y cuidado con los !
 
     // Accedemos a la carpeta Documents de nuestra app
     let fm = NSFileManager.defaultManager()
-    let documentsURL = fm.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last
+    var documentsURL : NSURL
+
+    if inCache {
+
+        // Quiero tener la opcion de guardar los pdf en cache, porque ocupan bastante
+        documentsURL = fm.URLsForDirectory(.CachesDirectory, inDomains: .UserDomainMask).last!
+    } else {
+
+        documentsURL = fm.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last!
+    }
+
 
     // Guardamos la url de nuestro fichero
-    let fileURL = documentsURL!.URLByAppendingPathComponent(url.lastPathComponent!)
+    let fileURL = documentsURL.URLByAppendingPathComponent(url.lastPathComponent!)
 
     if fm.fileExistsAtPath(fileURL.path!) {
 
-        print("Obteniendo datos de la url local: \(fileURL)")
         return fileURL
 
     } else {
 
         NSData(contentsOfURL: url)?.writeToURL(fileURL, atomically: true)
 
-        print("Descargando desde la url: \(url)")
+        print("Descargando el documento: \(fileURL.lastPathComponent)\n desde la url: \(url) \n en: \(fileURL)")
         return fileURL
     }
 
