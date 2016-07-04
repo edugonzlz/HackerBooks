@@ -29,6 +29,7 @@
 		348491501D2A7F680010612C /* iosStarOutline.png in Resources */ = {isa = PBXBuildFile; fileRef = 3484914A1D2A7F680010612C /* iosStarOutline.png */; };
 		348491511D2A7F680010612C /* iosStarOutline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3484914B1D2A7F680010612C /* iosStarOutline@2x.png */; };
 		348491521D2A7F680010612C /* iosStarOutline@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3484914C1D2A7F680010612C /* iosStarOutline@3x.png */; };
+		348491541D2AD2C60010612C /* SaveProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348491531D2AD2C60010612C /* SaveProcess.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		3484914A1D2A7F680010612C /* iosStarOutline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iosStarOutline.png; sourceTree = "<group>"; };
 		3484914B1D2A7F680010612C /* iosStarOutline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iosStarOutline@2x.png"; sourceTree = "<group>"; };
 		3484914C1D2A7F680010612C /* iosStarOutline@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iosStarOutline@3x.png"; sourceTree = "<group>"; };
+		348491531D2AD2C60010612C /* SaveProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveProcess.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +198,7 @@
 				342C80C91D27B12E00090B76 /* Info.plist */,
 				342C80F61D280F6F00090B76 /* JSONProcess.swift */,
 				342C80FA1D28122C00090B76 /* Errors.swift */,
+				348491531D2AD2C60010612C /* SaveProcess.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				342C80F31D27B3ED00090B76 /* BookModel.swift in Sources */,
 				342C80F71D280F6F00090B76 /* JSONProcess.swift in Sources */,
 				342C80BE1D27B12E00090B76 /* AppDelegate.swift in Sources */,
+				348491541D2AD2C60010612C /* SaveProcess.swift in Sources */,
 				342C81031D282D9000090B76 /* BookViewController.swift in Sources */,
 				342C80F91D28116800090B76 /* Foundation.swift in Sources */,
 				342C80FB1D28122C00090B76 /* Errors.swift in Sources */,

@@ -104,9 +104,9 @@ class Library {
         return element
     }
     // Nombre de una tag para un index
-    func tagName(forIndex index: Int) -> String {
+    func tagName(forSection section: Int) -> String {
 
-        return tags[index]
+        return tags[section]
     }
 
 }

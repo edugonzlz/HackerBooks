@@ -22,17 +22,30 @@ class Book {
 
     // MARK: - Computed Properties
     // TODO: - cuidado, corregir, esto esta lleno de !
-    // TODO: - Me gustaria entregar la imagen aqui, pero me falla el for de los tags si lo hago
-        var image : UIImage {
-            get {
-                guard let data = NSData(contentsOfURL: self.imageURL) else {
-                    // Si no conseguimos una portada ponemos una por defecto
-                    return UIImage(named: BOOK_ICON_KEY)!
-                }
-
-                return UIImage(data: data)!
+//        var imager : UIImage {
+//            get {
+//                // miro a ver si la tengo en local
+//                guard let data = NSData(contentsOfURL: self.imageURL) else {
+//                    // Si no conseguimos una portada ponemos una por defecto
+//                    return UIImage(named: BOOK_ICON_KEY)!
+//                }
+//
+//                return UIImage(data: data)!
+//            }
+//        }
+    var image : UIImage {
+        get {
+            let url = getLocalURL(forRemoteURL: imageURL)
+            guard let data = NSData(contentsOfURL: url) else {
+                // Si no conseguimos una portada ponemos una por defecto
+                return UIImage(named: BOOK_ICON_KEY)!
             }
+
+            return UIImage(data: data)!
+
         }
+    }
+
 
 
     // MARK: - Inits

@@ -51,7 +51,7 @@ class LibraryTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
-        return model.tagName(forIndex: section)
+        return model.tagName(forSection: section)
     }
 
 
