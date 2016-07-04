@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+let BOOK_ICON_KEY = "bookIcon.png"
+
 class Book {
 
     // MARK: - Stored Properties
@@ -16,20 +18,21 @@ class Book {
     let author : String
     let tags : [String]
     let imageURL : NSURL
-    let pdf : NSURL
+    let pdfURL : NSURL
 
     // MARK: - Computed Properties
     // TODO: - cuidado, corregir, esto esta lleno de !
     // TODO: - Me gustaria entregar la imagen aqui, pero me falla el for de los tags si lo hago
-    //    var image : UIImage {
-    //        get {
-    //            guard let data = NSData(contentsOfURL: self.imageURL) else {
-    //                return UIImage(named: "Firewatch.jpg")!
-    //            }
-    //
-    //            return UIImage(data: data)!
-    //        }
-    //    }
+        var image : UIImage {
+            get {
+                guard let data = NSData(contentsOfURL: self.imageURL) else {
+                    // Si no conseguimos una portada ponemos una por defecto
+                    return UIImage(named: BOOK_ICON_KEY)!
+                }
+
+                return UIImage(data: data)!
+            }
+        }
 
 
     // MARK: - Inits
@@ -37,12 +40,12 @@ class Book {
          author: String,
          tags: [String],
          imageURL: NSURL,
-         pdf: NSURL) {
+         pdfURL: NSURL) {
 
         self.title = title
         self.author = author
         self.tags = tags
         self.imageURL = imageURL
-        self.pdf = pdf
+        self.pdfURL = pdfURL
     }
 }

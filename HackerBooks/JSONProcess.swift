@@ -82,7 +82,7 @@ func decode(bookInJSON json: JSONDictionary) throws -> Book {
                 author: author,
                 tags: tags,
                 imageURL: imageURL,
-                pdf: pdfURL)
+                pdfURL: pdfURL)
 }
 
 // nos dan el jsonArray, un array de diccionarios/Book

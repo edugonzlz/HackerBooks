@@ -47,6 +47,8 @@ class BookViewController: UIViewController {
 
         self.titleLabel?.text = model.title
         self.authorLabel?.text = model.author
+        // TODO: - pendiente recoger la imagen
+        self.titlePageImage?.image = model.image
     }
 
 

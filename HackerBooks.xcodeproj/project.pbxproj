@@ -22,7 +22,7 @@
 		342C81061D282DC500090B76 /* LibraryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C81051D282DC500090B76 /* LibraryTableViewController.swift */; };
 		342C81091D282DF100090B76 /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C81071D282DF100090B76 /* PDFViewController.swift */; };
 		342C810A1D282DF100090B76 /* PDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 342C81081D282DF100090B76 /* PDFViewController.xib */; };
-		34454D5F1D283AA00046F920 /* Firewatch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 34454D5E1D283AA00046F920 /* Firewatch.jpg */; };
+		348491461D2A74DC0010612C /* bookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 348491451D2A74DC0010612C /* bookIcon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +64,7 @@
 		342C81051D282DC500090B76 /* LibraryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryTableViewController.swift; sourceTree = "<group>"; };
 		342C81071D282DF100090B76 /* PDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 		342C81081D282DF100090B76 /* PDFViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PDFViewController.xib; sourceTree = "<group>"; };
-		34454D5E1D283AA00046F920 /* Firewatch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Firewatch.jpg; sourceTree = "<group>"; };
+		348491451D2A74DC0010612C /* bookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookIcon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,7 +203,7 @@
 		342C80FC1D2820F900090B76 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				34454D5E1D283AA00046F920 /* Firewatch.jpg */,
+				348491451D2A74DC0010612C /* bookIcon.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -315,8 +315,8 @@
 				342C810A1D282DF100090B76 /* PDFViewController.xib in Resources */,
 				342C80C81D27B12E00090B76 /* LaunchScreen.storyboard in Resources */,
 				342C81041D282D9000090B76 /* BookViewController.xib in Resources */,
+				348491461D2A74DC0010612C /* bookIcon.png in Resources */,
 				342C80C51D27B12E00090B76 /* Assets.xcassets in Resources */,
-				34454D5F1D283AA00046F920 /* Firewatch.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

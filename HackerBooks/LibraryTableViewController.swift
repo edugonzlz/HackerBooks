@@ -79,7 +79,7 @@ class LibraryTableViewController: UITableViewController {
         // Sincronizamos con la vista
         cell?.textLabel?.text = book.title
         cell?.detailTextLabel?.text = book.author
-//        cell?.imageView?.image = image
+        cell?.imageView?.image = book.image
 
         return cell!
     }
