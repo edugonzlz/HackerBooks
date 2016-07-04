@@ -11,7 +11,7 @@ import UIKit
 class BookViewController: UIViewController {
 
     // MARK: - Stored Properties
-    let model : Book
+    var model : Book
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var authorLabel: UILabel?
     @IBOutlet weak var titlePageImage: UIImageView?
@@ -67,4 +67,16 @@ class BookViewController: UIViewController {
         // Cambiar color del boton segun corresponda
     }
 
+}
+
+// MARK: - LibraryTableViewControllerDelegate
+
+extension BookViewController : LibraryTableViewControllerDelegate {
+
+    func libraryTableViewController(viewController: LibraryTableViewController, didSelectedBook book: Book) {
+
+        model = book
+
+        syncModelWithView()
+    }
 }

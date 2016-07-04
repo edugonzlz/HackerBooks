@@ -12,6 +12,8 @@ class LibraryTableViewController: UITableViewController {
 
     // MARK: - Stored Properties
     let model : Library
+    var delegate : LibraryTableViewControllerDelegate?
+
 
     // MARK: - Inits
     init(withModel model: Library) {
@@ -33,17 +35,10 @@ class LibraryTableViewController: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 
         return model.tagsCount
@@ -75,6 +70,7 @@ class LibraryTableViewController: UITableViewController {
 
         // Descargamos la imagen
         // TODO: - cuidado con el ! Refactorizar esto a una funcion?
+        // Por ahora funciona haciendolo en el modelo
 //        let data = NSData(contentsOfURL: book.imageURL)
 //        let image = UIImage(data: data!)
 
@@ -86,50 +82,26 @@ class LibraryTableViewController: UITableViewController {
         return cell!
     }
 
+    // MARK: - TableViewDelegate
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
+        // Averiguamos que libro es
+        let book = model.book(forIndex: indexPath.row, forTag: indexPath.section)
 
-    /*
-     // Override to support editing the table view.
-     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-     if editingStyle == .Delete {
-     // Delete the row from the data source
-     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-     } else if editingStyle == .Insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
+        // Creamos un BookVC y hacemos un push
 
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+        // Avisamos a nuestro delegate del cambio
+        delegate?.libraryTableViewController(self, didSelectedBook: book)
 
-     }
-     */
+        // Tambien enviamos el cambio con una notificacion
+    }
+}
 
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
+// MARK: - LibraryTableViewControllerDelegate
+protocol LibraryTableViewControllerDelegate {
 
-    /*
-     // MARK: - Navigation
+    // funcion que mandamos a nuestro delegado
+    // informa de que libro ha sido seleccionado 
+    func libraryTableViewController(viewController: LibraryTableViewController, didSelectedBook book: Book)
 
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }

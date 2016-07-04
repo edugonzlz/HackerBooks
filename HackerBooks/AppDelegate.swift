@@ -72,6 +72,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let splitVC = UISplitViewController()
             splitVC.viewControllers = [lNav, bNav]
 
+            // Asignamos delegates
+            lVC.delegate = bVC
 
             // Asignar como root
             window?.rootViewController = splitVC
