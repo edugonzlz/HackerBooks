@@ -30,13 +30,13 @@
                     <items>
                         <barButtonItem style="plain" systemItem="bookmarks" id="VGI-v3-tog">
                             <connections>
-                                <action selector="doFavorite:" destination="-1" id="7s9-4E-yuA"/>
+                                <action selector="doFavoriteButton:" destination="-1" id="r7P-eL-DkF"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="3hT-5j-hrO"/>
                         <barButtonItem title="Leer PDF" id="ppg-pc-Xmq">
                             <connections>
-                                <action selector="readPDF:" destination="-1" id="2RL-dO-dDC"/>
+                                <action selector="readPDFButton:" destination="-1" id="jSy-0g-ooB"/>
                             </connections>
                         </barButtonItem>
                     </items>

@@ -30,10 +30,9 @@ class BookViewController: UIViewController {
     }
 
     // MARK: - Actions
-    @IBAction func doFavorite(sender: UIBarButtonItem) {
+    @IBAction func doFavoriteButton(sender: UIBarButtonItem) {
 
-        // Informar con una notificacion al modelo
-        // En el modelo cambiar la propiedad fav true/false
+        // TODO: - Informar con una notificacion al modelo???
         if !model.favorite {
 
             model.favorite = true
@@ -47,7 +46,8 @@ class BookViewController: UIViewController {
         }
 
     }
-    @IBAction func readPDF(sender: UIBarButtonItem) {
+
+    @IBAction func readPDFButton(sender: UIBarButtonItem) {
 
         // Creamos un PDFViewController
         let pdfVC = PDFViewController(withModel: model)
@@ -56,7 +56,7 @@ class BookViewController: UIViewController {
         navigationController?.pushViewController(pdfVC, animated: true)
 
     }
-    
+
     func syncModelWithView() {
 
         title = model.title
@@ -85,7 +85,6 @@ class BookViewController: UIViewController {
 }
 
 // MARK: - LibraryTableViewControllerDelegate
-
 extension BookViewController : LibraryTableViewControllerDelegate {
 
     func libraryTableViewController(viewController: LibraryTableViewController, didSelectedBook book: Book) {
