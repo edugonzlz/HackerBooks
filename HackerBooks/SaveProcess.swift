@@ -40,5 +40,23 @@ func getLocalURL(forRemoteURL url: NSURL, inCache: Bool) -> NSURL {
         print("Descargando el documento: \(fileURL.lastPathComponent)\n desde la url: \(url) \n en: \(fileURL)")
         return fileURL
     }
+}
 
+func doFavorite(state: Bool, forBook book: Book) {
+
+    let defaults = NSUserDefaults.standardUserDefaults()
+    let favBool = defaults.boolForKey(book.title)
+
+   if !favBool {
+
+        defaults.setBool(state, forKey: book.title)
+    print("\(book.title) es favorito: \(defaults.boolForKey(book.title))")
+
+    } else if favBool {
+        defaults.setBool(state, forKey: book.title)
+
+        print("\(book.title) es favorito: \(defaults.boolForKey(book.title))")
+    }
+
+    defaults.synchronize()
 }

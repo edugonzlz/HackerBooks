@@ -42,6 +42,19 @@ class Book {
             return url
         }
     }
+    var favorite : Bool {
+        set(bool) {
+
+            // Guardar en NSUserDefaults
+            doFavorite(bool, forBook: self)
+        }
+        get {
+
+            // Mirar en NSUserDefaults
+            let defaults = NSUserDefaults.standardUserDefaults()
+            return defaults.boolForKey(self.title)
+        }
+    }
 
 
 

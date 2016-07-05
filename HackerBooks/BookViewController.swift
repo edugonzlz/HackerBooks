@@ -15,6 +15,7 @@ class BookViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var authorLabel: UILabel?
     @IBOutlet weak var titlePageImage: UIImageView?
+    @IBOutlet weak var favButton: UIBarButtonItem!
 
     // MARK: - Init
     init(withModel model: Book) {
@@ -31,10 +32,19 @@ class BookViewController: UIViewController {
     // MARK: - Actions
     @IBAction func doFavorite(sender: UIBarButtonItem) {
 
-        // Cambiar color del boton
-
         // Informar con una notificacion al modelo
         // En el modelo cambiar la propiedad fav true/false
+        if !model.favorite {
+
+            model.favorite = true
+            // Cambiar color del boton
+            favButton.tintColor = UIColor.yellowColor()
+
+        } else if model.favorite {
+
+            model.favorite = false
+            favButton.tintColor = UIColor.blueColor()
+        }
 
     }
     @IBAction func readPDF(sender: UIBarButtonItem) {
@@ -53,6 +63,15 @@ class BookViewController: UIViewController {
         self.titleLabel?.text = model.title
         self.authorLabel?.text = model.author
         self.titlePageImage?.image = model.image
+
+        // Comprobamos si somos favorito y pintamos el color segun corresponda
+        if model.favorite {
+
+            favButton.tintColor = UIColor.yellowColor()
+        } else if !model.favorite {
+
+            favButton.tintColor = UIColor.blueColor()
+        }
     }
 
 
@@ -61,10 +80,6 @@ class BookViewController: UIViewController {
         super.viewDidLoad()
 
         syncModelWithView()
-        
-        // Comprobar si somos favoritos
-
-        // Cambiar color del boton segun corresponda
     }
 
 }

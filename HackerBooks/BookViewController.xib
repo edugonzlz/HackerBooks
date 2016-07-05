@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookViewController" customModule="HackerBooks" customModuleProvider="target">
             <connections>
                 <outlet property="authorLabel" destination="VH4-qL-TJd" id="5W4-3p-hbd"/>
+                <outlet property="favButton" destination="VGI-v3-tog" id="kdh-YD-hnS"/>
                 <outlet property="titleLabel" destination="E41-59-JZk" id="SUj-RK-iOW"/>
                 <outlet property="titlePageImage" destination="H3F-ha-QaO" id="Wsj-ao-hmu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
