@@ -52,7 +52,7 @@ class Library {
         }
         // Ordenamos las tags por orden alfabetico
         self.tags.sortInPlace()
-        // Añadimos la tag "fav"
+        // Añadimos la tag "fav" al principio
         tags.insert("favoritos", atIndex: 0)
 
         // Guardamos cada libro en el array de tags que corresponda
@@ -66,25 +66,19 @@ class Library {
                     booksWithTag.append(book)
                 }
             }
-            // Ordenamos comparando propiedad title cada array 
+            // Ordenamos comparando propiedad title cada array
             // y guardamos en el diccionario
             booksWithTag.sortInPlace({ $0.title < $1.title })
             self.tagsDict[tag] = booksWithTag
         }
 
-        // Recopilamos favoritos
-        let favsArray = getFavorites()
+        processFavs()
 
-        for book in books {
-            if favsArray.contains(book.title) {
-                self.favs.append(book)
-                print(book.title)
-            }
-        }
-
-        // Creamos una key favs en el diccionario 
+        // Creamos una key favs en el diccionario
         // y añadimos el array de favoritos
-        tagsDict["favoritos"] = favs
+//        tagsDict["favoritos"] = favs
+
+        addNotification()
 
     }
 
@@ -117,5 +111,32 @@ class Library {
         return tags[section]
     }
 
+    @objc func processFavs() {
+        // Recopilamos favoritos
+        let favsArray = getFavorites()
+
+        var booksArray = BooksArray()
+
+        for book in books {
+            if favsArray.contains(book.title) {
+
+                booksArray.append(book)
+//                self.favs.append(book)
+                print("Estos son los favoritos: \(book.title)")
+            }
+        }
+
+        tagsDict["favoritos"] = booksArray
+    }
+
+    func addNotification() {
+        // Nos damos de alta en notificaciones pasar saber cuando pulsan el boton de fav
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.addObserver(self,
+                       selector: #selector(processFavs),
+                       name: "favButtonPushNotification",
+                       object: nil)
+    }
+    
 }
 

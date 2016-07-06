@@ -89,15 +89,37 @@ class LibraryTableViewController: UITableViewController {
 
         // Tambien enviamos el cambio con una notificacion
 
-//        self.tableView.reloadData()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+
+        // Nos damos de alta en notificaciones pasar saber cuando pulsan el boton de fav
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.addObserver(self,
+                       selector: #selector(favButtonPushed),
+                       name: "favButtonPushNotification",
+                       object: nil)
+    }
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        // Nos damos de baja del centro de notificaciones
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.removeObserver(self)
+    }
+
+    func favButtonPushed() {
+
+        self.tableView.reloadData()
+        print("la tabla me he enterado de que han pulsado el BOTON!!!")
     }
 }
 
 // MARK: - LibraryTableViewControllerDelegate
 protocol LibraryTableViewControllerDelegate {
-
+    
     // funcion que mandamos a nuestro delegado
     // informa de que libro ha sido seleccionado 
     func libraryTableViewController(viewController: LibraryTableViewController, didSelectedBook book: Book)
-
+    
 }

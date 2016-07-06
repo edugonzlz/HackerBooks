@@ -32,18 +32,24 @@ class BookViewController: UIViewController {
     // MARK: - Actions
     @IBAction func doFavoriteButton(sender: UIBarButtonItem) {
 
-        // TODO: - Informar con una notificacion al modelo???
+        // Informamos al modelo
         if model.favorite {
 
             model.favorite = false
-            syncModelWithView()
 
         } else if !model.favorite {
 
             model.favorite = true
-            syncModelWithView()
         }
+        syncModelWithView()
 
+        // Deberiamos informar al modelo de library para que actualize datos
+        
+        // Enviamos una notificacion a la tabla para que se recargue
+        let nc = NSNotificationCenter.defaultCenter()
+        let notif = NSNotification(name: "favButtonPushNotification", object: self)
+
+        nc.postNotification(notif)
     }
 
     @IBAction func readPDFButton(sender: UIBarButtonItem) {
@@ -67,9 +73,10 @@ class BookViewController: UIViewController {
         if model.favorite {
 
             favButton.tintColor = UIColor.yellowColor()
+
         } else if !model.favorite {
 
-            favButton.tintColor = UIColor.blueColor()
+            favButton.tintColor = UIColor.grayColor()
         }
     }
 
