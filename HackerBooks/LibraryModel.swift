@@ -20,6 +20,7 @@ class Library {
     var books : BooksArray
     var tags = TagsArray()
     var tagsDict = TagsDictionary()
+    var favs = BooksArray()
 
     // MARK: - Computed Properties
     var booksCount : Int {
@@ -51,6 +52,8 @@ class Library {
         }
         // Ordenamos las tags por orden alfabetico
         self.tags.sortInPlace()
+        // Añadimos la tag "fav"
+        tags.insert("favoritos", atIndex: 0)
 
         // Guardamos cada libro en el array de tags que corresponda
         for tag in tags {
@@ -68,6 +71,20 @@ class Library {
             booksWithTag.sortInPlace({ $0.title < $1.title })
             self.tagsDict[tag] = booksWithTag
         }
+
+        // Recopilamos favoritos
+        let favsArray = getFavorites()
+
+        for book in books {
+            if favsArray.contains(book.title) {
+                self.favs.append(book)
+                print(book.title)
+            }
+        }
+
+        // Creamos una key favs en el diccionario 
+        // y añadimos el array de favoritos
+        tagsDict["favoritos"] = favs
 
     }
 

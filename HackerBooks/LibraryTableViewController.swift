@@ -88,6 +88,8 @@ class LibraryTableViewController: UITableViewController {
         delegate?.libraryTableViewController(self, didSelectedBook: book)
 
         // Tambien enviamos el cambio con una notificacion
+
+//        self.tableView.reloadData()
     }
 }
 
