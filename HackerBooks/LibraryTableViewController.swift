@@ -97,7 +97,7 @@ class LibraryTableViewController: UITableViewController {
         let nc = NSNotificationCenter.defaultCenter()
         nc.addObserver(self,
                        selector: #selector(favButtonPushed),
-                       name: "favButtonPushNotification",
+                       name: FAV_BUTTON_PUSHED_NOTIF,
                        object: nil)
     }
     override func viewWillDisappear(animated: Bool) {
@@ -110,8 +110,8 @@ class LibraryTableViewController: UITableViewController {
 
     func favButtonPushed() {
 
+        model.processFavs()
         self.tableView.reloadData()
-        print("la tabla me he enterado de que han pulsado el BOTON!!!")
     }
 }
 

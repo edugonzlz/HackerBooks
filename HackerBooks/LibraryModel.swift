@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+let FAVS_KEY = "favorites"
+
 class Library {
 
     // MARK: - Utility Types
@@ -45,21 +47,21 @@ class Library {
         for book in books {
             for tag in book.tags {
                 // Comprobamos si la tag esta ya en el array
-                if !self.tags.contains(tag) {
-                    self.tags.append(tag)
+                if !tags.contains(tag) {
+                    tags.append(tag)
                 }
             }
         }
         // Ordenamos las tags por orden alfabetico
-        self.tags.sortInPlace()
+        tags.sortInPlace()
         // Añadimos la tag "fav" al principio
-        tags.insert("favoritos", atIndex: 0)
+        tags.insert(FAVS_KEY, atIndex: 0)
 
         // Guardamos cada libro en el array de tags que corresponda
         for tag in tags {
 
             var booksWithTag = BooksArray()
-            self.tagsDict[tag] = booksWithTag
+            tagsDict[tag] = booksWithTag
 
             for book in books {
                 if book.tags.contains(tag) {
@@ -69,16 +71,12 @@ class Library {
             // Ordenamos comparando propiedad title cada array
             // y guardamos en el diccionario
             booksWithTag.sortInPlace({ $0.title < $1.title })
-            self.tagsDict[tag] = booksWithTag
+            tagsDict[tag] = booksWithTag
         }
 
         processFavs()
 
-        // Creamos una key favs en el diccionario
-        // y añadimos el array de favoritos
-//        tagsDict["favoritos"] = favs
-
-        addNotification()
+        // addNotification()
 
     }
 
@@ -111,7 +109,7 @@ class Library {
         return tags[section]
     }
 
-    @objc func processFavs() {
+    func processFavs() {
         // Recopilamos favoritos
         let favsArray = getFavorites()
 
@@ -121,22 +119,24 @@ class Library {
             if favsArray.contains(book.title) {
 
                 booksArray.append(book)
-//                self.favs.append(book)
-                print("Estos son los favoritos: \(book.title)")
             }
         }
 
-        tagsDict["favoritos"] = booksArray
+        // Ordenamos por titulo y guardamos en el diccionario de tags
+        booksArray.sortInPlace({ $0.title < $1.title })
+        tagsDict[FAVS_KEY] = booksArray
     }
 
-    func addNotification() {
-        // Nos damos de alta en notificaciones pasar saber cuando pulsan el boton de fav
-        let nc = NSNotificationCenter.defaultCenter()
-        nc.addObserver(self,
-                       selector: #selector(processFavs),
-                       name: "favButtonPushNotification",
-                       object: nil)
-    }
+    //    func addNotification() {
+    //        // Nos damos de alta en notificaciones pasar saber cuando pulsan el boton de fav
+    //        let nc = NSNotificationCenter.defaultCenter()
+    //        nc.addObserver(self,
+    //                       selector: #selector(processFavs),
+    //                       name: "favButtonPushNotification",
+    //                       object: nil)
+    //    }
+    
+    // TODO: - dar de baja la nofiticacion
     
 }
 

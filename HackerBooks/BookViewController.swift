@@ -8,6 +8,8 @@
 
 import UIKit
 
+let FAV_BUTTON_PUSHED_NOTIF = "favButtonPushNotification"
+
 class BookViewController: UIViewController {
 
     // MARK: - Stored Properties
@@ -47,7 +49,7 @@ class BookViewController: UIViewController {
         
         // Enviamos una notificacion a la tabla para que se recargue
         let nc = NSNotificationCenter.defaultCenter()
-        let notif = NSNotification(name: "favButtonPushNotification", object: self)
+        let notif = NSNotification(name: FAV_BUTTON_PUSHED_NOTIF, object: self)
 
         nc.postNotification(notif)
     }
