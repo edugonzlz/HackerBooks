@@ -41,6 +41,7 @@ class PDFViewController: UIViewController, UIWebViewDelegate {
                        object: nil)
         
         activityView.startAnimating()
+        self.title = "Cargando PDF..."
     }
     override func viewDidAppear(animated: Bool) {
 
@@ -74,6 +75,7 @@ class PDFViewController: UIViewController, UIWebViewDelegate {
         model = book!
 
         // TODO: - no aparece el activityView
+        self.title = "Cargando PDF..."
 
         // Sincronizar
         syncModelWithView()
@@ -85,5 +87,7 @@ class PDFViewController: UIViewController, UIWebViewDelegate {
 
         activityView.stopAnimating()
         activityView.hidesWhenStopped = true
+
+        self.title = ""
     }
 }

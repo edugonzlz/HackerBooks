@@ -77,7 +77,7 @@ class BookViewController: UIViewController {
         // Comprobamos si somos favorito y pintamos el color segun corresponda
         if model.favorite {
 
-            favButton.tintColor = UIColor.yellowColor()
+            favButton.tintColor = UIColor.orangeColor()
 
         } else if !model.favorite {
 

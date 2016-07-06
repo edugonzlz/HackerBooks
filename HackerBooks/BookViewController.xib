@@ -29,7 +29,7 @@
                         <constraint firstAttribute="height" constant="44" id="iz4-pF-b3N"/>
                     </constraints>
                     <items>
-                        <barButtonItem style="plain" systemItem="bookmarks" id="VGI-v3-tog">
+                        <barButtonItem image="favTrueImage" style="plain" id="VGI-v3-tog">
                             <connections>
                                 <action selector="doFavoriteButton:" destination="-1" id="r7P-eL-DkF"/>
                             </connections>
@@ -108,4 +108,7 @@
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="favTrueImage" width="22" height="28"/>
+    </resources>
 </document>
