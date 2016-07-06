@@ -16,6 +16,7 @@ class BookViewController: UIViewController {
     var model : Book
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var authorLabel: UILabel?
+    @IBOutlet weak var thematicLabel: UILabel!
     @IBOutlet weak var titlePageImage: UIImageView?
     @IBOutlet weak var favButton: UIBarButtonItem!
 
@@ -70,6 +71,7 @@ class BookViewController: UIViewController {
         title = model.title
         self.titleLabel?.text = model.title
         self.authorLabel?.text = model.author
+        self.thematicLabel?.text = model.tags.joinWithSeparator(", ")
         self.titlePageImage?.image = model.image
 
         // Comprobamos si somos favorito y pintamos el color segun corresponda
