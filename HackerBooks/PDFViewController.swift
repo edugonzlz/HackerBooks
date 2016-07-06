@@ -39,12 +39,36 @@ class PDFViewController: UIViewController, UIWebViewDelegate {
 
     // MARK: - LifeCycle
     override func viewWillAppear(animated: Bool) {
+
+        // Nos damos de alta en el centro de notificaciones
+        // Para enterarnos cuando pulsen un libro en la tabla
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.addObserver(self,
+                       selector: #selector(bookDidChange),
+                       name: BOOK_DID_CHANGE_NOTIF,
+                       object: nil)
         
         activityView.startAnimating()
     }
     override func viewDidAppear(animated: Bool) {
 
         syncModelWithView()
+    }
+
+    func bookDidChange(notification: NSNotification) {
+
+        // Sacar el userInfo
+        let info = notification.userInfo!
+
+        // Sacar el book
+        let book = info[BOOK_KEY] as? Book
+
+        // Actualizar el modelo
+        model = book!
+
+        // Sincronizar
+        syncModelWithView()
+
     }
 
     // MARK: - WebViewDelegate

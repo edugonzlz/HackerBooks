@@ -8,6 +8,9 @@
 
 import UIKit
 
+let BOOK_DID_CHANGE_NOTIF = "Selected book did change"
+let BOOK_KEY = "Book Key"
+
 class LibraryTableViewController: UITableViewController {
 
     // MARK: - Stored Properties
@@ -88,6 +91,11 @@ class LibraryTableViewController: UITableViewController {
         delegate?.libraryTableViewController(self, didSelectedBook: book)
 
         // Tambien enviamos el cambio con una notificacion
+        let nc = NSNotificationCenter.defaultCenter()
+        let notif = NSNotification(name: BOOK_DID_CHANGE_NOTIF,
+                                   object: self,
+                                   userInfo: [BOOK_KEY:book])
+        nc.postNotification(notif)
 
     }
 

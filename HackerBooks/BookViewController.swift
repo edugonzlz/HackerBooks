@@ -46,7 +46,8 @@ class BookViewController: UIViewController {
         syncModelWithView()
 
         // Deberiamos informar al modelo de library para que actualize datos
-        
+
+        // TODO: - en principo no la uso, ver si es mejor opcion
         // Enviamos una notificacion a la tabla para que se recargue
         let nc = NSNotificationCenter.defaultCenter()
         let notif = NSNotification(name: FAV_BUTTON_PUSHED_NOTIF, object: self)
