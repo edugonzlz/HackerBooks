@@ -28,14 +28,6 @@ class PDFViewController: UIViewController, UIWebViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - Methods
-    func syncModelWithView() {
-
-        browser.delegate = self
-
-        activityView.startAnimating()
-        browser.loadRequest(NSURLRequest(URL: model.pdf))
-    }
 
     // MARK: - LifeCycle
     override func viewWillAppear(animated: Bool) {
@@ -54,6 +46,21 @@ class PDFViewController: UIViewController, UIWebViewDelegate {
 
         syncModelWithView()
     }
+    override func viewWillDisappear(animated: Bool) {
+
+        // Nos damos de baja en el centro de notificaciones
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.removeObserver(self)
+    }
+
+    // MARK: - Methods
+    func syncModelWithView() {
+
+        browser.delegate = self
+
+        activityView.startAnimating()
+        browser.loadRequest(NSURLRequest(URL: model.pdf))
+    }
 
     func bookDidChange(notification: NSNotification) {
 
@@ -65,6 +72,8 @@ class PDFViewController: UIViewController, UIWebViewDelegate {
 
         // Actualizar el modelo
         model = book!
+
+        // TODO: - no aparece el activityView
 
         // Sincronizar
         syncModelWithView()
