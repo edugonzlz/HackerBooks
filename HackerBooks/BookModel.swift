@@ -46,7 +46,7 @@ class Book {
         set(bool) {
 
             // Guardar en NSUserDefaults
-            doFavorite(bool, forBook: self)
+            switchFavorite(thisBook: self, toState: bool)
         }
         get {
 

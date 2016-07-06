@@ -33,16 +33,15 @@ class BookViewController: UIViewController {
     @IBAction func doFavoriteButton(sender: UIBarButtonItem) {
 
         // TODO: - Informar con una notificacion al modelo???
-        if !model.favorite {
-
-            model.favorite = true
-            // Cambiar color del boton
-            favButton.tintColor = UIColor.yellowColor()
-
-        } else if model.favorite {
+        if model.favorite {
 
             model.favorite = false
-            favButton.tintColor = UIColor.blueColor()
+            syncModelWithView()
+
+        } else if !model.favorite {
+
+            model.favorite = true
+            syncModelWithView()
         }
 
     }

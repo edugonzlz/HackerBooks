@@ -42,7 +42,7 @@ func getLocalURL(forRemoteURL url: NSURL, inCache: Bool) -> NSURL {
     }
 }
 
-func doFavorite(state: Bool, forBook book: Book) {
+func switchFavorite(thisBook book: Book, toState state: Bool) {
 
     let defaults = NSUserDefaults.standardUserDefaults()
 
