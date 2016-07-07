@@ -60,8 +60,16 @@ func switchFavorite(thisBook book: Book, toState state: Bool) {
     }
     // Lo extraemos
     var favsDict = defaults.dictionaryForKey(FAVS_KEY)
-    // Guardamos el nuevo favoritos
-    favsDict![book.title] = state
+
+    // si el state es true guardamos, si es false borramos el libro
+    if state {
+
+        favsDict![book.title] = state
+
+    } else if !state {
+
+        favsDict?.removeValueForKey(book.title)
+    }
     // Guardamos de nuevo el diccionario
     defaults.setObject(favsDict, forKey: FAVS_KEY)
 
@@ -69,21 +77,14 @@ func switchFavorite(thisBook book: Book, toState state: Bool) {
 }
 
 // Devolvemos un array con los titulos de los libros que son favoritos
-func getFavorites() -> [String] {
+func getFavTitles() -> [String] {
 
     let defaults = NSUserDefaults.standardUserDefaults()
     if (defaults.dictionaryForKey(FAVS_KEY) != nil)  {
 
         let favsDict = defaults.dictionaryForKey(FAVS_KEY) as! [String : Bool]
 
-        var favsArray = [String]()
-
-        for (title, fav) in favsDict {
-
-            if fav {
-                favsArray.append(title)
-            }
-        }
+        let favsArray = [String](favsDict.keys)
 
         return favsArray
 

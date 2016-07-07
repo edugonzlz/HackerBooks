@@ -110,11 +110,12 @@ class Library {
     }
 
     func processFavs() {
-        // Recopilamos favoritos
-        let favsArray = getFavorites()
+        // Recogemos favoritos
+        let favsArray = getFavTitles()
 
         var booksArray = BooksArray()
 
+        // Guardamos en el array los libros que tengan el titulo que nos dan como favorito
         for book in books {
             if favsArray.contains(book.title) {
 
