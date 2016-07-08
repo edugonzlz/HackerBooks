@@ -102,13 +102,14 @@ class LibraryTableViewController: UITableViewController {
 
     override func viewWillAppear(animated: Bool) {
 
-        // Nos damos de alta en notificaciones pasar saber cuando pulsan el boton de fav
+        // Nos damos de alta en la notificacion que informa de la acualizacio de favoritos
         let nc = NSNotificationCenter.defaultCenter()
         nc.addObserver(self,
-                       selector: #selector(favButtonPushed),
-                       name: FAV_BUTTON_PUSHED_NOTIF,
+                       selector: #selector(favsUpdated),
+                       name: FAVS_ARRAY_UPDATED_NOTIF,
                        object: nil)
     }
+
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
 
@@ -117,9 +118,8 @@ class LibraryTableViewController: UITableViewController {
         nc.removeObserver(self)
     }
 
-    func favButtonPushed() {
+    func favsUpdated() {
 
-        model.processFavs()
         self.tableView.reloadData()
     }
 }

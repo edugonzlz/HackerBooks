@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 let FAVS_KEY = "favorites"
+let FAVS_ARRAY_UPDATED_NOTIF = "Favs Array Updated"
 
 class Library {
 
@@ -76,7 +77,7 @@ class Library {
 
         processFavs()
 
-        // addNotification()
+        addNotification()
 
     }
 
@@ -109,7 +110,7 @@ class Library {
         return tags[section]
     }
 
-    func processFavs() {
+    @objc func processFavs() {
         // Recogemos favoritos
         let favsArray = getFavTitles()
 
@@ -126,18 +127,30 @@ class Library {
         // Ordenamos por titulo y guardamos en el diccionario de tags
         booksArray.sortInPlace({ $0.title < $1.title })
         tagsDict[FAVS_KEY] = booksArray
+
+        // Mandamos notificacion porque hemos actualizado nuestros arrays
+        // La deberia recoger la tabla
+        let nc = NSNotificationCenter.defaultCenter()
+        let notif = NSNotification(name: FAVS_ARRAY_UPDATED_NOTIF,
+                                   object: self)
+        nc.postNotification(notif)
     }
 
-    //    func addNotification() {
-    //        // Nos damos de alta en notificaciones pasar saber cuando pulsan el boton de fav
-    //        let nc = NSNotificationCenter.defaultCenter()
-    //        nc.addObserver(self,
-    //                       selector: #selector(processFavs),
-    //                       name: "favButtonPushNotification",
-    //                       object: nil)
-    //    }
-    
-    // TODO: - dar de baja la nofiticacion
+    func addNotification() {
+        // Nos damos de alta en notificaciones pasar saber cuando pulsan el boton de fav
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.addObserver(self,
+                       selector: #selector(processFavs),
+                       name: FAV_BUTTON_PUSHED_NOTIF,
+                       object: nil)
+
+    }
+
+    deinit {
+        // Nos damos de baja en el centro de notificaciones
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.removeObserver(self)
+    }
     
 }
 

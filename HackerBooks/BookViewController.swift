@@ -46,16 +46,11 @@ class BookViewController: UIViewController {
         }
         syncModelWithView()
 
-        // TODO: - Revisar comportamiendo nofiticaciones
-        // Deberiamos informar al modelo de library para que actualize datos
-        // Enviamos una notificacion a la tabla para que se recargue
+        // Enviamos una notificacion con el cambio
+        // La recogera Library model para actualizar array de Favs
         let nc = NSNotificationCenter.defaultCenter()
-        let notif = NSNotification(name: FAV_BUTTON_PUSHED_NOTIF, object: self)
-
-        // posible notificacion para enviar a Book, Library y Table
-        // es necesario enviar userInfo con el nuevo estado del boton
-//        let nf = NSNotification(name: FAV_BUTTON_PUSHED_NOTIF,
-//                                object: self, userInfo: ["favState: state"])
+        let notif = NSNotification(name: FAV_BUTTON_PUSHED_NOTIF,
+                                   object: self)
 
         nc.postNotification(notif)
     }
@@ -90,7 +85,7 @@ class BookViewController: UIViewController {
     }
 
 
-
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
