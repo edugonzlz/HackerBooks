@@ -19,7 +19,7 @@ class Library {
     typealias TagsDictionary = [String : BooksArray]
 
     // MARK: - Stored Properties
-    var books : BooksArray
+    var books = BooksArray()
     var tags = TagsArray()
     var tagsDict = TagsDictionary()
     var favs = BooksArray()
@@ -42,6 +42,7 @@ class Library {
     init(withBooks books: BooksArray) {
 
         self.books = books
+        self.books.sortInPlace({ $0.title < $1.title })
 
         // Extraemos todas las tags de los libros
         for book in books {
@@ -107,6 +108,10 @@ class Library {
     func tagName(forSection section: Int) -> String {
 
         return tags[section]
+    }
+    func book(forIndex index: Int) -> Book {
+
+        return self.books[index]
     }
 
     func processFavs() {

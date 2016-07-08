@@ -35,33 +35,87 @@ class LibraryTableViewController: UITableViewController {
 
         title = "HackerBooks"
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        let order = ["Tags", "Title"]
+        let sc = UISegmentedControl(items: order)
+        sc.selectedSegmentIndex = 1
 
+        sc.addTarget(self,
+                     action: #selector(tableOrder),
+                     forControlEvents: .ValueChanged)
+
+        self.navigationItem.titleView = sc
     }
+
+
+    var numberOfSections = Int()
+
+    func tableOrder(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            print("has elegido tags")
+
+            numberOfSections =  model.tagsCount
+
+            func numberOfRows(inSection: Int) -> Int {
+                return model.booksCount(forSection: inSection)
+            }
+
+            func bookFromBooks(indexPath: NSIndexPath) -> Book {
+
+                let book = model.book(forIndexPath: indexPath)
+                return book
+            }
+
+            self.tableView.reloadData()
+
+        case 1:
+            print("has elegido title")
+
+            numberOfSections = 1
+
+            func numberOfRows(inSection: Int) -> Int {
+                return model.booksCount
+            }
+
+            func bookFromBooks(indexPath: NSIndexPath) -> Book {
+                let book = model.book(forIndex: indexPath.row)
+
+                return book
+            }
+
+            self.tableView.reloadData()
+
+        default:
+            print("has elegido tags")
+        }
+    }
+
 
 
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 
-        return model.tagsCount
+//        return model.tagsCount
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return model.booksCount(forSection: section)
+//        return model.booksCount(forSection: section)
+        return model.booksCount
     }
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-
-        return model.tagName(forSection: section)
-    }
+//    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//
+//        return model.tagName(forSection: section)
+//    }
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         // Averiguamos el libro
-        let book = model.book(forIndexPath: indexPath)
+//        let book = model.book(forIndexPath: indexPath)
+        let book = model.book(forIndex: indexPath.row)
 
         // Creamos la celda
         let cellId = "bookCell"
@@ -82,8 +136,9 @@ class LibraryTableViewController: UITableViewController {
     // MARK: - TableViewDelegate
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-        // Averiguamos que libro es
-        let book = model.book(forIndexPath: indexPath)
+        // Averiguamos el libro
+//        let book = model.book(forIndexPath: indexPath)
+        let book = model.book(forIndex: indexPath.row)
 
         // Creamos un BookVC y hacemos un push
         // Solo para el caso de estar en un iPhone
@@ -100,6 +155,7 @@ class LibraryTableViewController: UITableViewController {
 
     }
 
+    // MARK: - LifeCycle
     override func viewWillAppear(animated: Bool) {
 
         // Nos damos de alta en notificaciones pasar saber cuando pulsan el boton de fav
