@@ -11,11 +11,17 @@ import UIKit
 let BOOK_DID_CHANGE_NOTIF = "Selected book did change"
 let BOOK_KEY = "Book Key"
 
+let TABLE_ORDER_TAGS = 0
+let TABLE_ORDER_TITLE = 1
+let TABLE_ORDER_TAGS_NAME = "Tags"
+let TABLE_ORDER_TITLE_NAME = "Title"
+
 class LibraryTableViewController: UITableViewController {
 
     // MARK: - Stored Properties
     let model : Library
     var delegate : LibraryTableViewControllerDelegate?
+    var orderSelected = TABLE_ORDER_TAGS
 
 
     // MARK: - Inits
@@ -34,17 +40,15 @@ class LibraryTableViewController: UITableViewController {
         super.viewDidLoad()
 
         // Añadimos un segmentedControl
-        let order = ["Tags", "Title"]
+        let order = [TABLE_ORDER_TAGS_NAME, TABLE_ORDER_TITLE_NAME]
+
         let sc = UISegmentedControl(items: order)
 
-        // Arrancamos con la posicion 1
-        sc.selectedSegmentIndex = 1
-
-        // Reordenamos la tabla
-        tableOrder(sc)
+        // posicion al arrancar
+        sc.selectedSegmentIndex = orderSelected
 
         sc.addTarget(self,
-                     action: #selector(tableOrder),
+                     action: #selector(sortTable),
                      forControlEvents: .ValueChanged)
 
 
@@ -52,30 +56,16 @@ class LibraryTableViewController: UITableViewController {
     }
 
     // MARK: - Table Order Process for Segmented Control
-    var orderSelected = Int()
 
-    func tableOrder(sender: UISegmentedControl) {
+    func sortTable(sender: UISegmentedControl) {
+
         orderSelected = sender.selectedSegmentIndex
-
-        switch sender.selectedSegmentIndex {
-        case 0:
-            print("has elegido ordenar por tags, index: \(orderSelected)")
-
-            self.tableView.reloadData()
-
-        case 1:
-            print("has elegido ordenar por title, index: \(orderSelected)")
-
-            self.tableView.reloadData()
-
-        default:
-            print("has elegido ordenar por tags por defecto, index: \(orderSelected)")
-        }
+        self.tableView.reloadData()
     }
 
     func numberOfRows(forSection section: Int) -> Int {
 
-        if orderSelected == 1 {
+        if orderSelected == TABLE_ORDER_TITLE {
 
             return model.booksCount
         }
@@ -85,7 +75,7 @@ class LibraryTableViewController: UITableViewController {
 
     func getBook(forIndexPath indexPath: NSIndexPath) -> Book {
 
-        if orderSelected == 1 {
+        if orderSelected == TABLE_ORDER_TITLE {
 
            return model.book(forIndex: indexPath.row)
         }
@@ -96,7 +86,7 @@ class LibraryTableViewController: UITableViewController {
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 
-        if orderSelected == 1 {
+        if orderSelected == TABLE_ORDER_TITLE {
 
             return 1
         }
@@ -110,7 +100,7 @@ class LibraryTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
-        if orderSelected == 1 {
+        if orderSelected == TABLE_ORDER_TITLE {
 
             return "Books by Title"
         }
@@ -142,12 +132,7 @@ class LibraryTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
         // Averiguamos el libro
-        var book = model.book(forIndexPath: indexPath)
-
-        if orderSelected == 1 {
-
-            book = model.book(forIndex: indexPath.row)
-        }
+        let book = getBook(forIndexPath: indexPath)
 
         // Creamos un BookVC y hacemos un push
         // Solo para el caso de estar en un iPhone
