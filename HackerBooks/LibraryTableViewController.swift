@@ -33,89 +33,94 @@ class LibraryTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "HackerBooks"
-
+        // Añadimos un segmentedControl
         let order = ["Tags", "Title"]
         let sc = UISegmentedControl(items: order)
+
+        // Arrancamos con la posicion 1
         sc.selectedSegmentIndex = 1
+
+        // Reordenamos la tabla
+        tableOrder(sc)
 
         sc.addTarget(self,
                      action: #selector(tableOrder),
                      forControlEvents: .ValueChanged)
 
+
         self.navigationItem.titleView = sc
     }
 
-
-    var numberOfSections = Int()
+    // MARK: - Table Order Process for Segmented Control
+    var orderSelected = Int()
 
     func tableOrder(sender: UISegmentedControl) {
+        orderSelected = sender.selectedSegmentIndex
+
         switch sender.selectedSegmentIndex {
         case 0:
-            print("has elegido tags")
-
-            numberOfSections =  model.tagsCount
-
-            func numberOfRows(inSection: Int) -> Int {
-                return model.booksCount(forSection: inSection)
-            }
-
-            func bookFromBooks(indexPath: NSIndexPath) -> Book {
-
-                let book = model.book(forIndexPath: indexPath)
-                return book
-            }
+            print("has elegido ordenar por tags, index: \(orderSelected)")
 
             self.tableView.reloadData()
 
         case 1:
-            print("has elegido title")
-
-            numberOfSections = 1
-
-            func numberOfRows(inSection: Int) -> Int {
-                return model.booksCount
-            }
-
-            func bookFromBooks(indexPath: NSIndexPath) -> Book {
-                let book = model.book(forIndex: indexPath.row)
-
-                return book
-            }
+            print("has elegido ordenar por title, index: \(orderSelected)")
 
             self.tableView.reloadData()
 
         default:
-            print("has elegido tags")
+            print("has elegido ordenar por tags por defecto, index: \(orderSelected)")
         }
     }
 
+    func numberOfRows(forSection section: Int) -> Int {
 
+        if orderSelected == 1 {
+
+            return model.booksCount
+        }
+
+        return model.booksCount(forSection: section)
+    }
+
+    func getBook(forIndexPath indexPath: NSIndexPath) -> Book {
+
+        if orderSelected == 1 {
+
+           return model.book(forIndex: indexPath.row)
+        }
+
+        return model.book(forIndexPath: indexPath)
+    }
 
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 
-//        return model.tagsCount
-        return 1
+        if orderSelected == 1 {
+
+            return 1
+        }
+        return model.tagsCount
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-//        return model.booksCount(forSection: section)
-        return model.booksCount
+        return numberOfRows(forSection: section)
     }
 
-//    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//
-//        return model.tagName(forSection: section)
-//    }
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+
+        if orderSelected == 1 {
+
+            return "Books by Title"
+        }
+        return model.tagName(forSection: section)
+    }
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        // Averiguamos el libro
-//        let book = model.book(forIndexPath: indexPath)
-        let book = model.book(forIndex: indexPath.row)
+        let book = getBook(forIndexPath: indexPath)
 
         // Creamos la celda
         let cellId = "bookCell"
@@ -137,8 +142,12 @@ class LibraryTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
         // Averiguamos el libro
-//        let book = model.book(forIndexPath: indexPath)
-        let book = model.book(forIndex: indexPath.row)
+        var book = model.book(forIndexPath: indexPath)
+
+        if orderSelected == 1 {
+
+            book = model.book(forIndex: indexPath.row)
+        }
 
         // Creamos un BookVC y hacemos un push
         // Solo para el caso de estar en un iPhone
@@ -174,7 +183,7 @@ class LibraryTableViewController: UITableViewController {
     }
 
     func favButtonPushed() {
-
+        
         model.processFavs()
         self.tableView.reloadData()
     }
