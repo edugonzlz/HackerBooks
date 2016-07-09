@@ -27,6 +27,7 @@
 		344264821D2DBB2D00379381 /* iosStar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3442647F1D2DBB2D00379381 /* iosStar@3x.png */; };
 		348491461D2A74DC0010612C /* bookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 348491451D2A74DC0010612C /* bookIcon.png */; };
 		348491541D2AD2C60010612C /* SaveProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348491531D2AD2C60010612C /* SaveProcess.swift */; };
+		34D319C51D3002E300D61D3A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D319C41D3002E300D61D3A /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		3442647F1D2DBB2D00379381 /* iosStar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iosStar@3x.png"; sourceTree = "<group>"; };
 		348491451D2A74DC0010612C /* bookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookIcon.png; sourceTree = "<group>"; };
 		348491531D2AD2C60010612C /* SaveProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveProcess.swift; sourceTree = "<group>"; };
+		34D319C41D3002E300D61D3A /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 				342C80F61D280F6F00090B76 /* JSONProcess.swift */,
 				342C80FA1D28122C00090B76 /* Errors.swift */,
 				348491531D2AD2C60010612C /* SaveProcess.swift */,
+				34D319C41D3002E300D61D3A /* Settings.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				342C80F91D28116800090B76 /* Foundation.swift in Sources */,
 				342C80FB1D28122C00090B76 /* Errors.swift in Sources */,
 				342C81061D282DC500090B76 /* LibraryTableViewController.swift in Sources */,
+				34D319C51D3002E300D61D3A /* Settings.swift in Sources */,
 				342C80F51D27B82D00090B76 /* LibraryModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

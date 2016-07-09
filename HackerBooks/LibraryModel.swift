@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-let FAVS_KEY = "favorites"
-let FAVS_ARRAY_UPDATED_NOTIF = "Favs Array Updated"
+//let FAVS_KEY = "favorites"
+//let FAVS_ARRAY_UPDATED_NOTIF = "Favs Array Updated"
 
 class Library {
 

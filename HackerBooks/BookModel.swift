@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-let BOOK_ICON_KEY = "bookIcon.png"
+//let BOOK_ICON_KEY = "bookIcon.png"
 
 class Book {
 

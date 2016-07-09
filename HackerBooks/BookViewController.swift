@@ -8,7 +8,7 @@
 
 import UIKit
 
-let FAV_BUTTON_PUSHED_NOTIF = "favButtonPushNotification"
+//let FAV_BUTTON_PUSHED_NOTIF = "favButtonPushNotification"
 
 class BookViewController: UIViewController {
 

@@ -11,10 +11,10 @@ import UIKit
 
 
 // MARK: - Aliases
-typealias JSONObject = AnyObject
-typealias JSONDictionary = [String: JSONObject]
-typealias JSONArray = [JSONDictionary]
-typealias BooksArray = [Book]
+//typealias JSONObject = AnyObject
+//typealias JSONDictionary = [String: JSONObject]
+//typealias JSONArray = [JSONDictionary]
+//typealias BooksArray = [Book]
 
 // MARK: - Loading JSON
 // Nos pasan el nombre de un archivo y su bundle
