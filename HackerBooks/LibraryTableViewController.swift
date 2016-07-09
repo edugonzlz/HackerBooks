@@ -11,11 +11,17 @@ import UIKit
 //let BOOK_DID_CHANGE_NOTIF = "Selected book did change"
 //let BOOK_KEY = "Book Key"
 
+let TABLE_ORDER_TAGS = 0
+let TABLE_ORDER_TITLE = 1
+let TABLE_ORDER_TAGS_NAME = "Tags"
+let TABLE_ORDER_TITLE_NAME = "Title"
+
 class LibraryTableViewController: UITableViewController {
 
     // MARK: - Stored Properties
     let model : Library
     var delegate : LibraryTableViewControllerDelegate?
+    var orderSelected = TABLE_ORDER_TAGS
 
 
     // MARK: - Inits
@@ -33,35 +39,78 @@ class LibraryTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "HackerBooks"
+        // Añadimos un segmentedControl
+        let order = [TABLE_ORDER_TAGS_NAME, TABLE_ORDER_TITLE_NAME]
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        let sc = UISegmentedControl(items: order)
 
+        // posicion al arrancar
+        sc.selectedSegmentIndex = orderSelected
+
+        sc.addTarget(self,
+                     action: #selector(sortTable),
+                     forControlEvents: .ValueChanged)
+
+
+        self.navigationItem.titleView = sc
     }
 
+    // MARK: - Table Order Process for Segmented Control
+
+    func sortTable(sender: UISegmentedControl) {
+
+        orderSelected = sender.selectedSegmentIndex
+        self.tableView.reloadData()
+    }
+
+    func numberOfRows(forSection section: Int) -> Int {
+
+        if orderSelected == TABLE_ORDER_TITLE {
+
+            return model.booksCount
+        }
+
+        return model.booksCount(forSection: section)
+    }
+
+    func getBook(forIndexPath indexPath: NSIndexPath) -> Book {
+
+        if orderSelected == TABLE_ORDER_TITLE {
+
+           return model.book(forIndex: indexPath.row)
+        }
+
+        return model.book(forIndexPath: indexPath)
+    }
 
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 
+        if orderSelected == TABLE_ORDER_TITLE {
+
+            return 1
+        }
         return model.tagsCount
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return model.booksCount(forSection: section)
+        return numberOfRows(forSection: section)
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
+        if orderSelected == TABLE_ORDER_TITLE {
+
+            return "Books by Title"
+        }
         return model.tagName(forSection: section)
     }
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        // Averiguamos el libro
-        let book = model.book(forIndexPath: indexPath)
+        let book = getBook(forIndexPath: indexPath)
 
         // Creamos la celda
         let cellId = "bookCell"
@@ -82,8 +131,8 @@ class LibraryTableViewController: UITableViewController {
     // MARK: - TableViewDelegate
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-        // Averiguamos que libro es
-        let book = model.book(forIndexPath: indexPath)
+        // Averiguamos el libro
+        let book = getBook(forIndexPath: indexPath)
 
         // Creamos un BookVC y hacemos un push
         // Solo para el caso de estar en un iPhone
@@ -100,6 +149,7 @@ class LibraryTableViewController: UITableViewController {
 
     }
 
+    // MARK: - LifeCycle
     override func viewWillAppear(animated: Bool) {
 
         // Nos damos de alta en la notificacion que informa de la acualizacio de favoritos
