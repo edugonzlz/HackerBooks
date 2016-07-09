@@ -9,15 +9,7 @@
 import Foundation
 import UIKit
 
-//let FAVS_KEY = "favorites"
-//let FAVS_ARRAY_UPDATED_NOTIF = "Favs Array Updated"
-
 class Library {
-
-    // MARK: - Utility Types
-    typealias BooksArray = [Book]
-    typealias TagsArray = [String]
-    typealias TagsDictionary = [String : BooksArray]
 
     // MARK: - Stored Properties
     var books = BooksArray()
@@ -79,7 +71,12 @@ class Library {
         processFavs()
 
         addNotification()
+    }
 
+    deinit {
+        // Nos damos de baja en el centro de notificaciones
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.removeObserver(self)
     }
 
     // MARK: - Methods
@@ -94,29 +91,31 @@ class Library {
         }
         return count
     }
+    // Elemento para un index
+    func book(forIndex index: Int) -> Book {
+
+        return self.books[index]
+    }
     // Elemento para el index de un tag
     func book(forIndexPath indexPath: NSIndexPath) -> Book {
 
         let tag = tags[indexPath.section]
 
-        let elements = tagsDict[tag]
+        let books = tagsDict[tag]
         // TODO: - corregir este !
-        let element = elements![indexPath.row]
+        let book = books![indexPath.row]
 
-        return element
+        return book
     }
     // Nombre de una tag para un index
     func tagName(forSection section: Int) -> String {
 
         return tags[section]
     }
-    func book(forIndex index: Int) -> Book {
-
-        return self.books[index]
-    }
 
     @objc func processFavs() {
-        // Recogemos favoritos
+
+        // Extraemos favoritos de memoria
         let favsArray = getFavTitles()
 
         var booksArray = BooksArray()
@@ -148,13 +147,6 @@ class Library {
                        selector: #selector(processFavs),
                        name: FAV_BUTTON_PUSHED_NOTIF,
                        object: nil)
-
-    }
-
-    deinit {
-        // Nos damos de baja en el centro de notificaciones
-        let nc = NSNotificationCenter.defaultCenter()
-        nc.removeObserver(self)
     }
     
 }

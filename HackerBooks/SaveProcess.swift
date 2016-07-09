@@ -20,11 +20,11 @@ func getLocalURL(forRemoteURL url: NSURL, inCache: Bool) -> NSURL {
 
         // Quiero tener la opcion de guardar los pdf en cache, porque ocupan bastante
         documentsURL = fm.URLsForDirectory(.CachesDirectory, inDomains: .UserDomainMask).last!
+
     } else {
 
         documentsURL = fm.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last!
     }
-
 
     // Guardamos la url de nuestro fichero
     let fileURL = documentsURL.URLByAppendingPathComponent(url.lastPathComponent!)
@@ -35,6 +35,7 @@ func getLocalURL(forRemoteURL url: NSURL, inCache: Bool) -> NSURL {
 
     } else {
 
+        // Descargamos el documento si no existe en el directorio?
         print("Descargando el documento: \(fileURL.lastPathComponent)\n desde la url: \(url) \n en: \(fileURL)")
         NSData(contentsOfURL: url)?.writeToURL(fileURL, atomically: true)
 
@@ -48,8 +49,11 @@ func switchFavorite(thisBook book: Book, toState state: Bool) {
 
     // TODO: - decidir que version dejar
     // V1 guardando en un bool
-    defaults.setBool(state, forKey: book.title)
-    print("\(book.title) es favorito: \(defaults.boolForKey(book.title))")
+    //    defaults.setBool(state, forKey: book.title)
+    // Borrar
+    //    defaults.removeObjectForKey(book.title)
+    // Recuperar
+    //    defaults.boolForKey(book.title)
 
 
     // V2 guardando en un diccionario
@@ -70,10 +74,27 @@ func switchFavorite(thisBook book: Book, toState state: Bool) {
 
         favsDict?.removeValueForKey(book.title)
     }
+
     // Guardamos de nuevo el diccionario
     defaults.setObject(favsDict, forKey: FAVS_KEY)
 
     defaults.synchronize()
+
+    if (defaults.dictionaryForKey(FAVS_KEY)![book.title] != nil) {
+        print("\(book.title) es favorito")
+    } else {
+        print("\(book.title) no es favorito")
+    }
+}
+
+func isFavorite(thisBook book: Book) -> Bool {
+
+    let defaults = NSUserDefaults.standardUserDefaults()
+    let dict = defaults.dictionaryForKey(FAVS_KEY) as? [String : Bool]
+    guard let fav = dict![book.title] else {
+        return false
+    }
+    return fav
 }
 
 // Devolvemos un array con los titulos de los libros que son favoritos
@@ -84,9 +105,7 @@ func getFavTitles() -> [String] {
 
         let favsDict = defaults.dictionaryForKey(FAVS_KEY) as! [String : Bool]
 
-        let favsArray = [String](favsDict.keys)
-
-        return favsArray
+        return [String](favsDict.keys)
 
     } else {
 

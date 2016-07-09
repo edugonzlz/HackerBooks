@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-//let BOOK_ICON_KEY = "bookIcon.png"
-
 class Book {
 
     // MARK: - Stored Properties
@@ -20,8 +18,8 @@ class Book {
     let imageURL : NSURL
     let pdfURL : NSURL
 
-    // MARK: - Computed Properties
     // TODO: - cuidado, corregir, esto esta lleno de !
+    // MARK: - Computed Properties
     var image : UIImage {
         get {
             let url = getLocalURL(forRemoteURL: imageURL, inCache: false)
@@ -32,7 +30,6 @@ class Book {
             }
 
             return UIImage(data: data)!
-
         }
     }
     var pdf : NSURL {
@@ -50,13 +47,9 @@ class Book {
         }
         get {
 
-            // Mirar en NSUserDefaults
-            let defaults = NSUserDefaults.standardUserDefaults()
-            return defaults.boolForKey(self.title)
+            return isFavorite(thisBook: self)
         }
     }
-
-
 
     // MARK: - Inits
     init(title: String,

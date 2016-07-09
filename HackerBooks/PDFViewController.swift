@@ -23,7 +23,7 @@ class PDFViewController: UIViewController, UIWebViewDelegate {
 
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -39,9 +39,8 @@ class PDFViewController: UIViewController, UIWebViewDelegate {
                        selector: #selector(bookDidChange),
                        name: BOOK_DID_CHANGE_NOTIF,
                        object: nil)
-        
+
         activityView.startAnimating()
-        self.title = "Cargando PDF..."
     }
     override func viewDidAppear(animated: Bool) {
 
@@ -57,37 +56,32 @@ class PDFViewController: UIViewController, UIWebViewDelegate {
     // MARK: - Methods
     func syncModelWithView() {
 
-        browser.delegate = self
-
+        self.title = "Cargando PDF..."
         activityView.startAnimating()
+
+        browser.delegate = self
         browser.loadRequest(NSURLRequest(URL: model.pdf))
     }
 
     func bookDidChange(notification: NSNotification) {
 
-        // Sacar el userInfo
+        // Extraemos el libro
         let info = notification.userInfo!
-
-        // Sacar el book
         let book = info[BOOK_KEY] as? Book
 
-        // Actualizar el modelo
+        // Actualizamos el modelo
         model = book!
-
-        // TODO: - no aparece el activityView
-        self.title = "Cargando PDF..."
 
         // Sincronizar
         syncModelWithView()
-
     }
 
     // MARK: - WebViewDelegate
     func webViewDidFinishLoad(webView: UIWebView) {
 
+        self.title = ""
+        
         activityView.stopAnimating()
         activityView.hidesWhenStopped = true
-
-        self.title = ""
     }
 }

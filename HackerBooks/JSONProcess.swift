@@ -9,18 +9,12 @@
 import Foundation
 import UIKit
 
-
-// MARK: - Aliases
-//typealias JSONObject = AnyObject
-//typealias JSONDictionary = [String: JSONObject]
-//typealias JSONArray = [JSONDictionary]
-//typealias BooksArray = [Book]
-
 // MARK: - Loading JSON
+// TODO: - esta funcion no la usamos
 // Nos pasan el nombre de un archivo y su bundle
 // Devolvemos un array de diccionarios, en este caso de libros
 func loadAndSerialize(fromLocalJSONFile name: String,
-                                bundle: NSBundle = NSBundle.mainBundle())
+                                        bundle: NSBundle = NSBundle.mainBundle())
     throws -> JSONArray {
 
         if let url = bundle.URLForResource(name),
@@ -38,42 +32,42 @@ func loadAndSerialize(fromLocalJSONFile name: String,
 }
 func loadAndSerialize(fromURL url: NSURL) throws -> JSONArray {
 
-        if let data = NSData(contentsOfURL: url),
-            maybeArray = try? NSJSONSerialization.JSONObjectWithData(data,
-                                                                     options: NSJSONReadingOptions.MutableContainers) as? JSONArray,
-            array = maybeArray {
+    if let data = NSData(contentsOfURL: url),
+        maybeArray = try? NSJSONSerialization.JSONObjectWithData(data,
+                                                                 options: NSJSONReadingOptions.MutableContainers) as? JSONArray,
+        array = maybeArray {
 
-            return array
+        return array
 
-        } else {
+    } else {
 
-            throw HackerBooksError.jsonParsingError
-        }
+        throw HackerBooksError.jsonParsingError
+    }
 }
 
 func decode(bookInJSON json: JSONDictionary) throws -> Book {
 
     // validamos el book/diccionario/json
-    guard let title = json["title"] as? String else {
+    guard let title = json[JSON_TITLE] as? String else {
 
         throw HackerBooksError.wrongJSONFormat
     }
-    guard let author = json["authors"] as? String else {
+    guard let author = json[JSON_AUTHOR] as? String else {
 
         throw HackerBooksError.wrongJSONFormat
     }
-    guard let components = json["tags"] as? String,
-    tags : [String] = components.componentsSeparatedByString(", ") else {
+    guard let components = json[JSON_TAGS] as? String,
+        tags : [String] = components.componentsSeparatedByString(", ") else {
 
             throw HackerBooksError.wrongJSONFormat
     }
-    guard let iURL = json["image_url"] as? String,
+    guard let iURL = json[JSON_IMAGE_URL] as? String,
         imageURL = NSURL(string: iURL) else {
 
             throw HackerBooksError.wrongURLFormatForJSONResource
     }
-    guard let pURL = json["pdf_url"] as? String,
-    pdfURL = NSURL(string: pURL) else {
+    guard let pURL = json[JSON_PDF_URL] as? String,
+        pdfURL = NSURL(string: pURL) else {
 
             throw HackerBooksError.wrongURLFormatForJSONResource
     }
@@ -96,13 +90,13 @@ func booksArray(fromJSONArray array: JSONArray) -> BooksArray {
 
             // sumamos el libro en el array de libros
             books.append(book)
-
+            
         } catch {
-
+            
             HackerBooksError.errorDecodingJSON
         }
     }
-
+    
     return books
 }
 

@@ -8,8 +8,6 @@
 
 import UIKit
 
-let JSON_URL_KEY = "https://t.co/K9ziV0z3SJ"
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -29,14 +27,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Crear LibraryViewController
             let lVC = LibraryTableViewController(withModel: model)
 
-            // Metemos el View en un nav
+            // Meter el View en un nav
             let lNav = UINavigationController(rootViewController: lVC)
 
             // Crear BookViewController
             let defaultModel = model.tagsDict[model.tags[1]]!.first
             let bVC = BookViewController(withModel: defaultModel!)
 
-            // Lo metemos en un nav
             let bNav = UINavigationController(rootViewController: bVC)
 
             // Creamos un splitViewController y metemos los dos Controllers anteriores
@@ -77,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
-    
+
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }

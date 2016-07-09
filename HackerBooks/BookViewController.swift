@@ -8,8 +8,6 @@
 
 import UIKit
 
-//let FAV_BUTTON_PUSHED_NOTIF = "favButtonPushNotification"
-
 class BookViewController: UIViewController {
 
     // MARK: - Stored Properties
@@ -57,17 +55,14 @@ class BookViewController: UIViewController {
 
     @IBAction func readPDFButton(sender: UIBarButtonItem) {
 
-        // Creamos un PDFViewController
         let pdfVC = PDFViewController(withModel: model)
 
-        // Hacer un push al PDFViewController
         navigationController?.pushViewController(pdfVC, animated: true)
-
     }
 
     func syncModelWithView() {
 
-        title = "Hacker Books"
+        title = APP_NAME
         self.titleLabel?.text = model.title
         self.authorLabel?.text = model.author
         self.thematicLabel?.text = model.tags.joinWithSeparator(", ")
@@ -91,7 +86,6 @@ class BookViewController: UIViewController {
 
         syncModelWithView()
     }
-
 }
 
 // MARK: - LibraryTableViewControllerDelegate
