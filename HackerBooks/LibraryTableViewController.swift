@@ -63,7 +63,15 @@ class LibraryTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
 
-    func numberOfRows(forSection section: Int) -> Int {
+    func numberOfTags() -> Int {
+
+        if orderSelected == TABLE_ORDER_TITLE {
+
+            return 1
+        }
+        return model.tagsCount
+    }
+    func numberOfBooks(forSection section: Int) -> Int {
 
         if orderSelected == TABLE_ORDER_TITLE {
 
@@ -72,7 +80,15 @@ class LibraryTableViewController: UITableViewController {
 
         return model.booksCount(forSection: section)
     }
+    func tagName(forSection section: Int) -> String? {
 
+        if orderSelected == TABLE_ORDER_TITLE {
+
+            return "Books by Title"
+        }
+
+        return model.tagName(forSection: section)
+    }
     func getBook(forIndexPath indexPath: NSIndexPath) -> Book {
 
         if orderSelected == TABLE_ORDER_TITLE {
@@ -83,28 +99,21 @@ class LibraryTableViewController: UITableViewController {
         return model.book(forIndexPath: indexPath)
     }
 
+
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 
-        if orderSelected == TABLE_ORDER_TITLE {
-
-            return 1
-        }
-        return model.tagsCount
+        return numberOfTags()
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return numberOfRows(forSection: section)
+        return numberOfBooks(forSection: section)
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
-        if orderSelected == TABLE_ORDER_TITLE {
-
-            return "Books by Title"
-        }
-        return model.tagName(forSection: section)
+        return tagName(forSection: section)
     }
 
 

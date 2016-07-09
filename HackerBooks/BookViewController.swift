@@ -67,7 +67,7 @@ class BookViewController: UIViewController {
 
     func syncModelWithView() {
 
-        title = model.title
+        title = "Hacker Books"
         self.titleLabel?.text = model.title
         self.authorLabel?.text = model.author
         self.thematicLabel?.text = model.tags.joinWithSeparator(", ")
