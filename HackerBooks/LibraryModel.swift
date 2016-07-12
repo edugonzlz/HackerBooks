@@ -102,7 +102,8 @@ class Library {
         let tag = tags[indexPath.section]
 
         let books = tagsDict[tag]
-        // TODO: - corregir este !
+
+//         TODO: - corregir este !
         let book = books![indexPath.row]
 
         return book

@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.makeKeyAndVisible()
 
         } catch {
-            // TODO: - revisar este error, esta duplicado en loadAndSerialize???
+
             print("Error tratando de cargar y serializar el archivo JSON")
         }
 

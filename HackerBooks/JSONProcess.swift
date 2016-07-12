@@ -10,26 +10,7 @@ import Foundation
 import UIKit
 
 // MARK: - Loading JSON
-// TODO: - esta funcion no la usamos
-// Nos pasan el nombre de un archivo y su bundle
-// Devolvemos un array de diccionarios, en este caso de libros
-func loadAndSerialize(fromLocalJSONFile name: String,
-                                        bundle: NSBundle = NSBundle.mainBundle())
-    throws -> JSONArray {
 
-        if let url = bundle.URLForResource(name),
-            data = NSData(contentsOfURL: url),
-            maybeArray = try? NSJSONSerialization.JSONObjectWithData(data,
-                                                                     options: NSJSONReadingOptions.MutableContainers) as? JSONArray,
-            array = maybeArray {
-
-            return array
-
-        } else {
-
-            throw HackerBooksError.jsonParsingError
-        }
-}
 func loadAndSerialize(fromURL url: NSURL) throws -> JSONArray {
 
     if let data = NSData(contentsOfURL: url),
