@@ -60,7 +60,16 @@ class PDFViewController: UIViewController, UIWebViewDelegate {
         activityView.startAnimating()
 
         browser.delegate = self
-        browser.loadRequest(NSURLRequest(URL: model.pdf))
+
+        // Metodo 1
+        //        browser.loadRequest(NSURLRequest(URL: model.pdf))
+
+        // Metodo 2
+        let data  = NSData(contentsOfURL: model.pdf)
+        browser.loadData(data!,
+                         MIMEType: "application/pdf",
+                         textEncodingName: "utf-8",
+                         baseURL: model.pdf)
     }
 
     func bookDidChange(notification: NSNotification) {

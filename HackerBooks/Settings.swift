@@ -28,7 +28,7 @@ let BOOK_DID_CHANGE_NOTIF = "SelectedBookDidChange"
 let BOOK_KEY = "BookKey"
 
 // LibraryTableViewController
-let TABLE_ORDER_DEFAULT = 1 // 0 = Tags ó 1 = Title
+let TABLE_ORDER_DEFAULT = 0 // 0 = Tags ó 1 = Title
 let TABLE_ORDER_TAGS = 0
 let TABLE_ORDER_TITLE = 1
 let TABLE_ORDER_TAGS_NAME = "Tags"

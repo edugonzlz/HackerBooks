@@ -145,53 +145,49 @@ class LibraryTableViewController: UITableViewController {
     }
     func numberOfTags() -> Int {
 
-        if orderSelected == TABLE_ORDER_TITLE {
-
+        switch orderSelected {
+        case TABLE_ORDER_TAGS:
+            return model.tagsCount
+        case TABLE_ORDER_TITLE:
             return 1
+        default:
+            return model.tagsCount
         }
-        return model.tagsCount
     }
     func numberOfBooks(forSection section: Int) -> Int {
 
-        if orderSelected == TABLE_ORDER_TITLE {
-
+        switch orderSelected {
+        case TABLE_ORDER_TAGS:
+            return model.booksCount(forSection: section)
+        case TABLE_ORDER_TITLE:
             return model.booksCount
+        default:
+            return model.booksCount(forSection: section)
         }
-
-        return model.booksCount(forSection: section)
     }
     func tagName(forSection section: Int) -> String? {
 
-        if orderSelected == TABLE_ORDER_TITLE {
-
+        switch orderSelected {
+        case TABLE_ORDER_TAGS:
+            return model.tagName(forSection: section)
+        case TABLE_ORDER_TITLE:
             return "Books by Title"
+        default:
+            return model.tagName(forSection: section)
         }
-
-        return model.tagName(forSection: section)
     }
     func getBook(forIndexPath indexPath: NSIndexPath) -> Book {
 
-        if orderSelected == TABLE_ORDER_TITLE {
-
+        switch orderSelected {
+        case TABLE_ORDER_TAGS:
+            return model.book(forIndexPath: indexPath)
+        case TABLE_ORDER_TITLE:
             return model.book(forIndex: indexPath.row)
+        default:
+            return model.book(forIndexPath: indexPath)
         }
-
-        return model.book(forIndexPath: indexPath)
     }
 
-    // TODO: - revisar si podemos meter esto en algun lugar
-    //    if orderSelected == TABLE_ORDER_TAGS {
-    //    func numberOfTags() -> Int { return model.tagsCount }
-    //    func numberOfBooks(forSection section: Int) -> Int { return model.booksCount(forSection: section) }
-    //    func tagName(forSection section: Int) -> String? { return model.tagName(forSection: section) }
-    //    func getBook(forIndexPath indexPath: NSIndexPath) -> Book { return model.book(forIndexPath: indexPath) }
-    //    }
-    //    if orderSelected == TABLE_ORDER_TITLE {
-    //    func numberOfTags() -> Int { return 1 }
-    //    func numberOfBooks(forSection section: Int) -> Int { return model.booksCount }
-    //    func tagName(forSection section: Int) -> String? { return "Books by Title" }
-    //    func getBook(forIndexPath indexPath: NSIndexPath) -> Book { return model.book(forIndex: indexPath.row) }
-    //    }
 }
 
 // MARK: - LibraryTableViewControllerDelegate
