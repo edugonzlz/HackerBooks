@@ -99,8 +99,8 @@ class LibraryTableViewController: UITableViewController {
         // Averiguamos el libro
         let book = getBook(forIndexPath: indexPath)
 
-        // Creamos un BookVC y hacemos un push
-        // TODO: - Solo para el caso de estar en un iPhone
+        // TODO: - Creamos un BookVC y hacemos un push
+        // Solo para el caso de estar en un iPhone
 
         // Avisamos a nuestro delegate del cambio
         delegate?.libraryTableViewController(self, didSelectedBook: book)

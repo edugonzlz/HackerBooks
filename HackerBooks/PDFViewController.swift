@@ -56,15 +56,12 @@ class PDFViewController: UIViewController, UIWebViewDelegate {
     // MARK: - Methods
     func syncModelWithView() {
 
-        self.title = "Cargando PDF..."
+        // TODO: - cuando cambio el libro desde la tabla no se pinta el titulo y el activityView
+        self.title = "Loading PDF..."
         activityView.startAnimating()
 
         browser.delegate = self
 
-        // Metodo 1
-        //        browser.loadRequest(NSURLRequest(URL: model.pdf))
-
-        // Metodo 2
         let data  = NSData(contentsOfURL: model.pdf)
         browser.loadData(data!,
                          MIMEType: "application/pdf",

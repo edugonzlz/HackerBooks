@@ -47,8 +47,7 @@ func switchFavorite(thisBook book: Book, toState state: Bool) {
 
     let defaults = NSUserDefaults.standardUserDefaults()
 
-    // TODO: - decidir que version dejar
-    // V1 guardando en un bool
+    // V1 guardando en un boolForKey
     //    defaults.setBool(state, forKey: book.title)
     // Borrar
     //    defaults.removeObjectForKey(book.title)
