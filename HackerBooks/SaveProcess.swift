@@ -56,22 +56,28 @@ func switchFavorite(thisBook book: Book, toState state: Bool) {
 
 
     // V2 guardando en un diccionario
-    if (defaults.dictionaryForKey(FAVS_KEY) == nil) {
-        // si no existe el diccionario lo creamos
+    // Si no existe el diccionario lo creamos
+    guard var favsDict = defaults.dictionaryForKey(FAVS_KEY) else {
         let favsDict = [String : Bool]()
-        defaults.setObject(favsDict, forKey: FAVS_KEY)
+        return defaults.setObject(favsDict, forKey: FAVS_KEY)
     }
+
+//    if (defaults.dictionaryForKey(FAVS_KEY) == nil) {
+//        // si no existe el diccionario lo creamos
+//        let favsDict = [String : Bool]()
+//        defaults.setObject(favsDict, forKey: FAVS_KEY)
+//    }
     // Lo extraemos
-    var favsDict = defaults.dictionaryForKey(FAVS_KEY)
+//    favsDict = defaults.dictionaryForKey(FAVS_KEY)!
 
     // si el state es true guardamos, si es false borramos el libro
     if state {
 
-        favsDict![book.title] = state
+        favsDict[book.title] = state
 
     } else if !state {
 
-        favsDict?.removeValueForKey(book.title)
+        favsDict.removeValueForKey(book.title)
     }
 
     // Guardamos de nuevo el diccionario
@@ -89,8 +95,8 @@ func switchFavorite(thisBook book: Book, toState state: Bool) {
 func isFavorite(thisBook book: Book) -> Bool {
 
     let defaults = NSUserDefaults.standardUserDefaults()
-//    let dict = defaults.dictionaryForKey(FAVS_KEY) as? [String : Bool]
-    guard let dict = defaults.dictionaryForKey(FAVS_KEY) as? [String : Bool], fav = dict[book.title] else {
+    guard let dict = defaults.dictionaryForKey(FAVS_KEY) as? [String : Bool],
+        fav = dict[book.title] else {
         return false
     }
     return fav
