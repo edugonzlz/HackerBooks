@@ -89,8 +89,8 @@ func switchFavorite(thisBook book: Book, toState state: Bool) {
 func isFavorite(thisBook book: Book) -> Bool {
 
     let defaults = NSUserDefaults.standardUserDefaults()
-    let dict = defaults.dictionaryForKey(FAVS_KEY) as? [String : Bool]
-    guard let fav = dict![book.title] else {
+//    let dict = defaults.dictionaryForKey(FAVS_KEY) as? [String : Bool]
+    guard let dict = defaults.dictionaryForKey(FAVS_KEY) as? [String : Bool], fav = dict[book.title] else {
         return false
     }
     return fav

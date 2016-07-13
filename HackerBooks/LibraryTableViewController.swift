@@ -101,6 +101,8 @@ class LibraryTableViewController: UITableViewController {
 
         // TODO: - Creamos un BookVC y hacemos un push
         // Solo para el caso de estar en un iPhone
+//        let bVC = BookViewController(withModel: book)
+//        navigationController?.pushViewController(bVC, animated: true)
 
         // Avisamos a nuestro delegate del cambio
         delegate?.libraryTableViewController(self, didSelectedBook: book)
