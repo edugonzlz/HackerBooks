@@ -59,8 +59,13 @@ class LibraryTableViewController: UITableViewController, LibraryTableViewControl
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
+        // Cuando la seccion favoritos esta vacia no aparece en la tabla
+        if section == 0 && numberOfBooks(forSection: 0) == 0 {
+            return nil
+        }
         return tagName(forSection: section)
     }
+
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 

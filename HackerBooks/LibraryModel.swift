@@ -79,8 +79,8 @@ class Library {
         nc.removeObserver(self)
     }
 
-    // MARK: - Methods
 
+    // MARK: - Methods
     // Cantidad de elementos por tag
     func booksCount(forSection tagIndex: Int) -> Int {
 
@@ -114,8 +114,8 @@ class Library {
         return tags[section].uppercaseString
     }
 
-    @objc func processFavs() {
 
+    @objc func processFavs() {
         // Extraemos favoritos de memoria
         let favsArray = getFavTitles()
 
