@@ -111,7 +111,7 @@ class Library {
     // Nombre de una tag para un index
     func tagName(forSection section: Int) -> String {
 
-        return tags[section]
+        return tags[section].uppercaseString
     }
 
     @objc func processFavs() {

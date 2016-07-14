@@ -62,6 +62,7 @@ func switchFavorite(thisBook book: Book, toState state: Bool) {
         return defaults.setObject(favsDict, forKey: FAVS_KEY)
     }
 
+    // TODO: - Borrar, realizado con un guard
 //    if (defaults.dictionaryForKey(FAVS_KEY) == nil) {
 //        // si no existe el diccionario lo creamos
 //        let favsDict = [String : Bool]()

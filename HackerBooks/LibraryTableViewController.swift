@@ -173,7 +173,7 @@ class LibraryTableViewController: UITableViewController {
         case TABLE_ORDER_TAGS:
             return model.tagName(forSection: section)
         case TABLE_ORDER_TITLE:
-            return "Books by Title"
+            return "BOOKS BY TITLE"
         default:
             return model.tagName(forSection: section)
         }
