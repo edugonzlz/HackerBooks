@@ -14,6 +14,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
+    func rootViewControllerForPhone(withModel model: Library) -> UIViewController {
+
+        // Crear LibraryViewController
+        let lVC = LibraryTableViewController(withModel: model)
+
+        // Meter el View en un nav
+        let lNav = UINavigationController(rootViewController: lVC)
+
+        lVC.delegate = lVC
+
+        return lNav
+    }
+    func rootViewControllerForPad(withModel model: Library) -> UIViewController {
+
+        // Crear LibraryViewController
+        let lVC = LibraryTableViewController(withModel: model)
+
+        // Meter el View en un nav
+        let lNav = UINavigationController(rootViewController: lVC)
+
+        // Crear BookViewController
+        let defaultModel = model.tagsDict[model.tags[1]]!.first
+        let bVC = BookViewController(withModel: defaultModel!)
+
+        let bNav = UINavigationController(rootViewController: bVC)
+
+        // Creamos un splitViewController y metemos los dos Controllers anteriores
+        let splitVC = UISplitViewController()
+        splitVC.viewControllers = [lNav, bNav]
+
+        // Asignamos delegates
+        lVC.delegate = bVC
+
+        return splitVC
+    }
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         do {
@@ -24,27 +60,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let books = booksArray(fromJSONArray: json)
             let model = Library(withBooks: books)
 
-            // Crear LibraryViewController
-            let lVC = LibraryTableViewController(withModel: model)
 
-            // Meter el View en un nav
-            let lNav = UINavigationController(rootViewController: lVC)
+            // Comprobamos si estamos en iphone o tableta
+            var rootVC = UIViewController()
 
-            // Crear BookViewController
-            let defaultModel = model.tagsDict[model.tags[1]]!.first
-            let bVC = BookViewController(withModel: defaultModel!)
-
-            let bNav = UINavigationController(rootViewController: bVC)
-
-            // Creamos un splitViewController y metemos los dos Controllers anteriores
-            let splitVC = UISplitViewController()
-            splitVC.viewControllers = [lNav, bNav]
-
-            // Asignamos delegates
-            lVC.delegate = bVC
+            if (!(IS_IPHONE)) {
+                // Tableta
+                rootVC = self.rootViewControllerForPad(withModel: model)
+            } else {
+                // Si no es tableta
+                rootVC = self.rootViewControllerForPhone(withModel: model)
+            }
 
             // Asignar como root
-            window?.rootViewController = splitVC
+            window?.rootViewController = rootVC
 
             // Hacer visible la window
             window?.makeKeyAndVisible()

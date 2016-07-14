@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LibraryTableViewController: UITableViewController {
+class LibraryTableViewController: UITableViewController, LibraryTableViewControllerDelegate{
 
     // MARK: - Stored Properties
     let model : Library
@@ -99,11 +99,6 @@ class LibraryTableViewController: UITableViewController {
         // Averiguamos el libro
         let book = getBook(forIndexPath: indexPath)
 
-        // TODO: - Creamos un BookVC y hacemos un push
-        // Solo para el caso de estar en un iPhone
-//        let bVC = BookViewController(withModel: book)
-//        navigationController?.pushViewController(bVC, animated: true)
-
         // Avisamos a nuestro delegate del cambio
         delegate?.libraryTableViewController(self, didSelectedBook: book)
 
@@ -113,6 +108,14 @@ class LibraryTableViewController: UITableViewController {
                                    object: self,
                                    userInfo: [BOOK_KEY:book])
         nc.postNotification(notif)
+    }
+
+    func libraryTableViewController(viewController: LibraryTableViewController, didSelectedBook book: Book) {
+
+        // TODO: - Creamos un BookVC y hacemos un push
+        // Solo para el caso de estar en un iPhone
+        let bVC = BookViewController(withModel: book)
+        navigationController?.pushViewController(bVC, animated: true)
     }
 
     // MARK: - LifeCycle

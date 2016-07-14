@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 let APP_NAME = "Hacker Books"
 let BOOK_ICON_KEY = "bookIcon.png"
@@ -41,3 +42,6 @@ typealias JSONArray = [JSONDictionary]
 typealias BooksArray = [Book]
 typealias TagsArray = [String]
 typealias TagsDictionary = [String : BooksArray]
+
+//#define IS_IPHONE  UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone
+let IS_IPHONE = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Phone
