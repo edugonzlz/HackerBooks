@@ -127,6 +127,14 @@ class LibraryTableViewController: UITableViewController, LibraryTableViewControl
                        selector: #selector(favsUpdated),
                        name: FAVS_ARRAY_UPDATED_NOTIF,
                        object: nil)
+
+        // Recargamos tambien la tabla aqui
+        // para en el caso que estamos en iphone, al hacer el pop y volver a la tabla, 
+        // recuperar los favoritos nuevos
+        if IS_IPHONE {
+
+            tableView.reloadData()
+        }
     }
 
     override func viewWillDisappear(animated: Bool) {
