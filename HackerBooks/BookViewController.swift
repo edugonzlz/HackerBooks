@@ -45,7 +45,7 @@ class BookViewController: UIViewController {
         syncModelWithView()
 
         // Enviamos una notificacion con el cambio
-        // La recogera Library model para actualizar array de Favs
+        // La recogera LibraryModel para actualizar array de Favs
         let nc = NSNotificationCenter.defaultCenter()
         let notif = NSNotification(name: FAV_BUTTON_PUSHED_NOTIF,
                                    object: self)
@@ -69,14 +69,8 @@ class BookViewController: UIViewController {
         self.titlePageImage?.image = model.image
 
         // Comprobamos si somos favorito y pintamos el color segun corresponda
-        if model.favorite {
-
-            favButton.tintColor = UIColor.orangeColor()
-
-        } else if !model.favorite {
-
-            favButton.tintColor = UIColor.grayColor()
-        }
+        model.favorite ? (favButton.tintColor = UIColor.orangeColor())
+            : (favButton.tintColor = UIColor.grayColor())
     }
 
 

@@ -35,6 +35,7 @@ class Library {
     init(withBooks books: BooksArray) {
 
         self.books = books
+        // Ordenamos alfabeticamente por titulo
         self.books.sortInPlace({ $0.title < $1.title })
 
         // Extraemos todas las tags de los libros
@@ -67,9 +68,9 @@ class Library {
             booksWithTag.sortInPlace({ $0.title < $1.title })
             tagsDict[tag] = booksWithTag
         }
-
+        // Leemos los favoritos de memoria y los presentamos
         processFavs()
-
+        // añadimos notificaciones
         addNotification()
     }
 
@@ -103,7 +104,7 @@ class Library {
 
         let books = tagsDict[tag]
 
-//         TODO: - corregir este !
+        // TODO: - gestionar !
         let book = books![indexPath.row]
 
         return book
@@ -149,6 +150,5 @@ class Library {
                        name: FAV_BUTTON_PUSHED_NOTIF,
                        object: nil)
     }
-    
 }
 

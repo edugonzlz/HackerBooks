@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Meter el View en un nav
         let lNav = UINavigationController(rootViewController: lVC)
 
+        // Asignar delegados
         lVC.delegate = lVC
 
         return lNav
@@ -35,8 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let lNav = UINavigationController(rootViewController: lVC)
 
         // Crear BookViewController
-        let defaultModel = model.tagsDict[model.tags[1]]!.first
-        let bVC = BookViewController(withModel: defaultModel!)
+        let initModel = model.tagsDict[model.tags[1]]!.first
+        let bVC = BookViewController(withModel: initModel!)
 
         let bNav = UINavigationController(rootViewController: bVC)
 
@@ -44,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let splitVC = UISplitViewController()
         splitVC.viewControllers = [lNav, bNav]
 
-        // Asignamos delegates
+        // Asignamos delegados
         lVC.delegate = bVC
 
         return splitVC
@@ -53,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         do {
+
 
             let url = getLocalURL(forRemoteURL: NSURL(string: JSON_URL_KEY)!, inCache: false)
             let json = try loadAndSerialize(fromURL: url)

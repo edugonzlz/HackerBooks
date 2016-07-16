@@ -18,7 +18,7 @@ class Book {
     let imageURL : NSURL
     let pdfURL : NSURL
 
-    // TODO: - cuidado, corregir, esto esta lleno de !
+    // TODO: - gestionar los !
     // MARK: - Computed Properties
     var image : UIImage {
         get {

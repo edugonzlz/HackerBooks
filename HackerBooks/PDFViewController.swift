@@ -12,7 +12,6 @@ class PDFViewController: UIViewController, UIWebViewDelegate {
 
     // MARK: - Properties
     var model : Book
-
     @IBOutlet weak var browser: UIWebView!
     @IBOutlet weak var activityView: UIActivityIndicatorView!
 
@@ -56,14 +55,18 @@ class PDFViewController: UIViewController, UIWebViewDelegate {
     // MARK: - Methods
     func syncModelWithView() {
 
-        // TODO: - cuando cambio el libro desde la tabla no se pinta el titulo y el activityView
+        // TODO: - cuando cambio el libro desde la tabla y el pdf no se habia descargado
+        // no se pinta el titulo y el activityView
         self.title = "Loading PDF..."
         activityView.startAnimating()
 
         browser.delegate = self
 
-        let data  = NSData(contentsOfURL: model.pdf)
-        browser.loadData(data!,
+        guard let data = NSData(contentsOfURL: model.pdf) else {
+            self.title = "Error Cargando PDF..."
+            return print("Error tratando de recuperar el archivo pdf de nuestro libro")
+        }
+        browser.loadData(data,
                          MIMEType: "application/pdf",
                          textEncodingName: "utf-8",
                          baseURL: model.pdf)

@@ -28,7 +28,7 @@ func loadAndSerialize(fromURL url: NSURL) throws -> JSONArray {
 
 func decode(bookInJSON json: JSONDictionary) throws -> Book {
 
-    // validamos el book/diccionario/json
+    // validamos el json/diccionario/libro
     guard let title = json[JSON_TITLE] as? String else {
 
         throw HackerBooksError.wrongJSONFormat
@@ -60,7 +60,7 @@ func decode(bookInJSON json: JSONDictionary) throws -> Book {
                 pdfURL: pdfURL)
 }
 
-// nos dan el jsonArray, un array de diccionarios/Book
+// nos dan el jsonArray, un array de diccionarios(libros)
 // Devolvemos un array de objetos Book
 func booksArray(fromJSONArray array: JSONArray) -> BooksArray {
 

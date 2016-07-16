@@ -66,7 +66,6 @@ class LibraryTableViewController: UITableViewController, LibraryTableViewControl
         return tagName(forSection: section)
     }
 
-
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         let book = getBook(forIndexPath: indexPath)
@@ -84,16 +83,12 @@ class LibraryTableViewController: UITableViewController, LibraryTableViewControl
         cell?.detailTextLabel?.text = book.author
         cell?.imageView?.image = book.image
 
-        // Pintamos las celdas de favoritos
-        // TODO: - No funciona, pinta celdas aleatorias en title
-        //        if orderSelected == TABLE_ORDER_TAGS && indexPath.section == 0 {
-        //
-        //            cell?.backgroundColor = UIColor(red:1.00, green:0.91, blue:0.49, alpha:1.00)
-        //
-        //        }else if indexPath.section != 0 {
-        //            // Hago esto porque sino me pinta celdas de color aleatoriamente sin razon localizada
-        //            cell?.backgroundColor = UIColor.whiteColor()
-        //        }
+        // Pintamos las celdas de favoritos cuando ordenamos por titulo
+        if book.favorite && orderSelected == TABLE_ORDER_TITLE {
+            cell?.backgroundColor = UIColor(red:1.00, green:0.91, blue:0.49, alpha:1.00)
+        } else {
+            cell?.backgroundColor = UIColor.whiteColor()
+        }
 
         return cell!
     }
@@ -117,8 +112,9 @@ class LibraryTableViewController: UITableViewController, LibraryTableViewControl
 
     func libraryTableViewController(viewController: LibraryTableViewController, didSelectedBook book: Book) {
 
-        // TODO: - Creamos un BookVC y hacemos un push
+        // Creamos un BookVC y hacemos un push
         // Solo para el caso de estar en un iPhone
+        // En el cual, al ser delegados de la tabla, implementamos esta funcion
         let bVC = BookViewController(withModel: book)
         navigationController?.pushViewController(bVC, animated: true)
     }

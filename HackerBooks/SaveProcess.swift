@@ -10,7 +10,7 @@ import Foundation
 
 func getLocalURL(forRemoteURL url: NSURL, inCache: Bool) -> NSURL {
 
-    // TODO: - Crear un throws y cuidado con los !
+    // TODO: - gestionar los !
 
     // Accedemos a la carpeta Documents de nuestra app
     let fm = NSFileManager.defaultManager()
@@ -19,6 +19,7 @@ func getLocalURL(forRemoteURL url: NSURL, inCache: Bool) -> NSURL {
     if inCache {
 
         // Quiero tener la opcion de guardar los pdf en cache, porque ocupan bastante
+        // Asi el sistema puede borrarlos si necesita espacio
         documentsURL = fm.URLsForDirectory(.CachesDirectory, inDomains: .UserDomainMask).last!
 
     } else {
@@ -35,9 +36,17 @@ func getLocalURL(forRemoteURL url: NSURL, inCache: Bool) -> NSURL {
 
     } else {
 
-        // Descargamos el documento si no existe en el directorio?
+        // Si no existe la ruta descargamos el documento y lo guardamos
         print("Descargando el documento: \(fileURL.lastPathComponent)\n desde la url: \(url) \n en: \(fileURL)")
-        NSData(contentsOfURL: url)?.writeToURL(fileURL, atomically: true)
+
+        guard let data = NSData(contentsOfURL: url) else {
+            print("Fallo en la descarga de la url: \(url)")
+
+            // Devuelvo la ruta donde queriamos guardar el archivo
+            // TODO: - que otra cosa mejor puedo hacer ???
+            return fileURL
+        }
+        data.writeToURL(fileURL, atomically: true)
 
         return fileURL
     }
@@ -47,29 +56,11 @@ func switchFavorite(thisBook book: Book, toState state: Bool) {
 
     let defaults = NSUserDefaults.standardUserDefaults()
 
-    // V1 guardando en un boolForKey
-    //    defaults.setBool(state, forKey: book.title)
-    // Borrar
-    //    defaults.removeObjectForKey(book.title)
-    // Recuperar
-    //    defaults.boolForKey(book.title)
-
-
-    // V2 guardando en un diccionario
     // Si no existe el diccionario lo creamos
     guard var favsDict = defaults.dictionaryForKey(FAVS_KEY) else {
         let favsDict = [String : Bool]()
         return defaults.setObject(favsDict, forKey: FAVS_KEY)
     }
-
-    // TODO: - Borrar, realizado con un guard
-//    if (defaults.dictionaryForKey(FAVS_KEY) == nil) {
-//        // si no existe el diccionario lo creamos
-//        let favsDict = [String : Bool]()
-//        defaults.setObject(favsDict, forKey: FAVS_KEY)
-//    }
-    // Lo extraemos
-//    favsDict = defaults.dictionaryForKey(FAVS_KEY)!
 
     // si el state es true guardamos, si es false borramos el libro
     if state {
@@ -92,7 +83,7 @@ func switchFavorite(thisBook book: Book, toState state: Bool) {
         print("\(book.title) no es favorito")
     }
 }
-
+// Informamos de si un libro es favorito
 func isFavorite(thisBook book: Book) -> Bool {
 
     let defaults = NSUserDefaults.standardUserDefaults()
